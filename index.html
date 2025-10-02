@@ -56,7 +56,7 @@
       /* Team Swiper */
       .team-swiper {
         width: 100%;
-        padding: 40px 0 24px 0;
+        padding: 40px 0 60px 0;
       }
 
       .team-swiper .swiper-slide {
@@ -167,7 +167,7 @@
         display: flex;
         justify-content: center;
         gap: 1rem;
-        margin-top: 1rem;
+        margin-top: 2rem;
       }
 
       .team-nav-btn {
@@ -1074,7 +1074,7 @@
           <h2 class="text-3xl tracking-tight font-light mb-2 title-gradient text-center">Sports</h2>
           <p class="text-center text-white/70 max-w-2xl mx-auto">Swipe or drag to explore featured sports.</p>
 
-          <div class="swiper sportsSwiper w-full" style="padding-top: 40px; padding-bottom: 24px;">
+          <div class="swiper sportsSwiper w-full" style="padding-top: 40px; padding-bottom: 60px;">
             <div class="swiper-wrapper">
               <!-- Football -->
               <div class="swiper-slide w-[260px] h-[320px] sm:w-[300px] sm:h-[340px] md:w-[360px] md:h-[360px]">
@@ -1136,6 +1136,51 @@
         </div>
       </section>
 
+      <!-- Location/Venue Section -->
+      <section id="venue" class="container mx-auto px-6 mt-16 scroll-mt-24">
+        <div class="max-w-6xl mx-auto glass rounded-2xl border border-white/10 ring-contrast p-8" data-animate="" style="--d:.09s;">
+          <h2 class="text-3xl tracking-tight font-light mb-8 title-gradient text-center">Venue & Location</h2>
+          <div class="grid md:grid-cols-2 gap-8 items-center">
+            <div>
+              <h3 class="text-2xl font-light mb-4 text-white">Olympic Sports Complex</h3>
+              <div class="space-y-4 text-white/80">
+                <div class="flex items-center gap-3">
+                  <i data-lucide="map-pin" class="w-5 h-5 text-blue-400" stroke-width="1.5"></i>
+                  <span>123 Championship Drive, Sports City, SC 12345</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <i data-lucide="car" class="w-5 h-5 text-green-400" stroke-width="1.5"></i>
+                  <span>Free parking available for all participants</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <i data-lucide="train" class="w-5 h-5 text-purple-400" stroke-width="1.5"></i>
+                  <span>Metro Station: Sports Complex (Line 2)</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <i data-lucide="clock" class="w-5 h-5 text-yellow-400" stroke-width="1.5"></i>
+                  <span>Event Time: 9:00 AM - 6:00 PM</span>
+                </div>
+              </div>
+              <div class="mt-6">
+                <button class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg transition-colors focus-ring">
+                  <i data-lucide="navigation" class="w-4 h-4 mr-2" stroke-width="1.5"></i>
+                  Get Directions
+                </button>
+              </div>
+            </div>
+            <div class="relative">
+              <div class="aspect-video rounded-xl overflow-hidden bg-gradient-to-br from-blue-600/20 to-purple-600/20 border border-white/10">
+                <img src="https://source.unsplash.com/600x400/?stadium,sports-complex" alt="Olympic Sports Complex" class="w-full h-full object-cover progressive-image" loading="lazy">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+                <div class="absolute bottom-4 left-4">
+                  <p class="text-white font-medium">State-of-the-art facilities</p>
+                  <p class="text-white/70 text-sm">Capacity: 25,000 spectators</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <!-- Brochure Section -->
       <section id="brochure" class="container mx-auto px-6 mt-16 scroll-mt-24">
