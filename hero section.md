@@ -1,7 +1,16 @@
 <html lang="en"><head>
     <meta charset="UTF-8">
-    <title>Axiom Docs — Developer Guide</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sports Club Championship - Official Event Website</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes">
+    <meta name="description" content="Join the ultimate sports championship event. Register now for competitions in football, basketball, athletics and more!">
+    <meta name="theme-color" content="#000000">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Sports Club">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="apple-touch-icon" sizes="180x180" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgwIiBoZWlnaHQ9IjE4MCIgdmlld0JveD0iMCAwIDE4MCAxODAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxODAiIGhlaWdodD0iMTgwIiBmaWxsPSIjMDAwMDAwIiByeD0iNDAiLz4KPHN2ZyB4PSI0NSIgeT0iNDUiIHdpZHRoPSI5MCIgaGVpZ2h0PSI5MCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIj4KPHN0cm9rZT0iIzYwYTVmYSIgc3Ryb2tlLXdpZHRoPSIyIiBkPSJNMTIgOGMtMi4yMSAwLTQgMS43OS00IDRzMS43OSA0IDQgNCA0LTEuNzkgNC00LTEuNzktNC00LTR6bTAgMTBjLTUuMzMgMC0xMC0yLjY3LTEwLThzNC42Ny04IDEwLTggMTAgMi42NyAxMCA4LTQuNjcgOC0xMCA4eiIvPgo8L3N2Zz4KPC9zdmc+">
+    <link rel="manifest" href="data:application/json,{'name':'Sports Club Championship','short_name':'Sports Club','theme_color':'%23000000','background_color':'%23000000','display':'standalone','start_url':'./'}">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -44,6 +53,483 @@
         100% { transform: translateX(-50%); }
       }
 
+      /* Team Swiper */
+      .team-swiper {
+        width: 100%;
+        padding: 40px 0 60px 0;
+      }
+
+      .team-swiper .swiper-slide {
+        width: 280px;
+        height: 350px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .team-member {
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        padding: 2rem;
+        border-radius: 20px;
+        background: rgba(255,255,255,0.05);
+        border: 1px solid rgba(255,255,255,0.1);
+        backdrop-filter: blur(10px);
+        transition: all 0.4s ease;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .team-member::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(135deg, rgba(59,130,246,0.1), rgba(139,92,246,0.1));
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        z-index: 1;
+      }
+
+      .team-member:hover::before {
+        opacity: 1;
+      }
+
+      .team-member:hover {
+        transform: translateY(-10px) scale(1.05);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        border-color: rgba(255,255,255,0.3);
+      }
+
+      .team-member img {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        margin-bottom: 1.5rem;
+        object-fit: cover;
+        border: 3px solid rgba(255,255,255,0.2);
+        transition: all 0.3s ease;
+        position: relative;
+        z-index: 2;
+      }
+
+      .team-member:hover img {
+        border-color: rgba(59,130,246,0.6);
+        box-shadow: 0 0 20px rgba(59,130,246,0.3);
+      }
+
+      .team-member h3 {
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin-bottom: 0.75rem;
+        color: white;
+        position: relative;
+        z-index: 2;
+        transition: color 0.3s ease;
+      }
+
+      .team-member:hover h3 {
+        color: rgb(96,165,250);
+      }
+
+      .team-member p {
+        font-size: 0.95rem;
+        color: rgba(255,255,255,0.8);
+        margin: 0;
+        font-weight: 400;
+        position: relative;
+        z-index: 2;
+        line-height: 1.4;
+      }
+
+      .team-member .role-badge {
+        background: rgba(59,130,246,0.2);
+        border: 1px solid rgba(59,130,246,0.3);
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        margin-top: 1rem;
+        color: rgb(147,197,253);
+        font-weight: 500;
+        position: relative;
+        z-index: 2;
+      }
+
+      /* Team Swiper Navigation */
+      .team-navigation {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin-top: 2rem;
+      }
+
+      .team-nav-btn {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: rgba(255,255,255,0.1);
+        border: 1px solid rgba(255,255,255,0.2);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(10px);
+      }
+
+      .team-nav-btn:hover {
+        background: rgba(59,130,246,0.3);
+        border-color: rgba(59,130,246,0.5);
+        transform: scale(1.1);
+      }
+
+      .team-nav-btn.swiper-button-disabled {
+        opacity: 0.3;
+        cursor: not-allowed;
+      }
+
+      /* Comprehensive Mobile Responsiveness */
+      
+      /* Mobile First - Base styles for smallest screens */
+      @media (max-width: 480px) {
+        /* Container adjustments */
+        .container {
+          padding-left: 1rem;
+          padding-right: 1rem;
+        }
+        
+        /* Hero section mobile */
+        .title-gradient {
+          font-size: 2.5rem !important;
+          line-height: 1.2;
+        }
+        
+        .text-xl {
+          font-size: 1.125rem;
+        }
+        
+        /* Countdown mobile */
+        .countdown-container {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 0.75rem;
+        }
+        
+        .countdown-number {
+          font-size: 2rem;
+        }
+        
+        .countdown-label {
+          font-size: 0.75rem;
+        }
+        
+        /* Loading screen mobile */
+        .loading-text {
+          font-size: 1.25rem;
+        }
+        
+        .ball {
+          width: 16px;
+          height: 16px;
+        }
+        
+        /* FAB mobile */
+        .fab {
+          width: 56px;
+          height: 56px;
+          bottom: 1rem;
+          right: 1rem;
+        }
+        
+        /* Sports carousel mobile */
+        .sportsSwiper {
+          padding-top: 20px;
+          padding-bottom: 40px;
+        }
+        
+        /* Team carousel mobile */
+        .team-swiper .swiper-slide {
+          width: 220px;
+          height: 280px;
+        }
+        
+        .team-member {
+          padding: 1rem;
+        }
+        
+        .team-member img {
+          width: 80px;
+          height: 80px;
+        }
+        
+        .team-member h3 {
+          font-size: 1rem;
+        }
+        
+        .team-member p {
+          font-size: 0.8rem;
+        }
+        
+        .role-badge {
+          font-size: 0.7rem;
+          padding: 0.25rem 0.75rem;
+        }
+        
+        /* Navigation mobile */
+        .team-navigation {
+          gap: 0.5rem;
+        }
+        
+        .team-nav-btn {
+          width: 40px;
+          height: 40px;
+        }
+        
+        /* Gallery masonry mobile */
+        .masonry {
+          column-count: 1 !important;
+          column-gap: 1rem;
+        }
+        
+        /* Venue section mobile */
+        .aspect-video {
+          aspect-ratio: 16/12;
+        }
+        
+        /* Form inputs mobile */
+        input, textarea {
+          font-size: 16px; /* Prevents zoom on iOS */
+        }
+        
+        /* Modal/overlay touch improvements */
+        .glass {
+          backdrop-filter: blur(8px);
+        }
+      }
+      
+      /* Large Mobile / Small Tablet */
+      @media (min-width: 481px) and (max-width: 768px) {
+        .container {
+          padding-left: 1.5rem;
+          padding-right: 1.5rem;
+        }
+        
+        .title-gradient {
+          font-size: 3rem;
+        }
+        
+        .countdown-container {
+          grid-template-columns: repeat(4, 1fr);
+          gap: 1rem;
+        }
+        
+        .countdown-number {
+          font-size: 2.5rem;
+        }
+        
+        .team-swiper .swiper-slide {
+          width: 250px;
+          height: 320px;
+        }
+        
+        .team-member {
+          padding: 1.5rem;
+        }
+        
+        .team-member img {
+          width: 100px;
+          height: 100px;
+        }
+        
+        .team-member h3 {
+          font-size: 1.1rem;
+        }
+        
+        .masonry {
+          column-count: 2;
+        }
+      }
+      
+      /* Tablet */
+      @media (min-width: 769px) and (max-width: 1024px) {
+        .container {
+          padding-left: 2rem;
+          padding-right: 2rem;
+        }
+        
+        .title-gradient {
+          font-size: 4rem;
+        }
+        
+        .countdown-number {
+          font-size: 3rem;
+        }
+        
+        .team-swiper .swiper-slide {
+          width: 260px;
+          height: 330px;
+        }
+        
+        .masonry {
+          column-count: 2;
+        }
+      }
+      
+      /* Desktop */
+      @media (min-width: 1025px) {
+        .masonry {
+          column-count: 3;
+        }
+      }
+      
+      /* Large Desktop */
+      @media (min-width: 1440px) {
+        .masonry {
+          column-count: 4;
+        }
+        
+        .team-swiper .swiper-slide {
+          width: 300px;
+          height: 360px;
+        }
+      }
+      
+      /* Touch Device Optimizations */
+      @media (hover: none) and (pointer: coarse) {
+        /* Larger touch targets */
+        .team-nav-btn {
+          width: 50px;
+          height: 50px;
+        }
+        
+        .fab {
+          width: 60px;
+          height: 60px;
+        }
+        
+        /* Remove hover effects on touch devices */
+        .team-member:hover {
+          transform: none;
+          box-shadow: none;
+        }
+        
+        .team-member:active {
+          transform: scale(0.98);
+        }
+        
+        /* Better button sizing for touch */
+        button, .btn {
+          min-height: 44px;
+          min-width: 44px;
+        }
+      }
+      
+      /* High DPI / Retina Displays */
+      @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+        .progressive-image {
+          image-rendering: -webkit-optimize-contrast;
+        }
+      }
+      
+      /* Landscape Mobile Orientation */
+      @media (max-width: 768px) and (orientation: landscape) {
+        .title-gradient {
+          font-size: 2.25rem;
+        }
+        
+        .countdown-container {
+          grid-template-columns: repeat(4, 1fr);
+          gap: 0.5rem;
+        }
+        
+        .countdown-number {
+          font-size: 1.75rem;
+        }
+        
+        .team-swiper {
+          padding: 20px 0 40px 0;
+        }
+      }
+      
+      /* Accessibility improvements */
+      @media (prefers-reduced-motion: reduce) {
+        .progressive-load,
+        .team-marquee-track,
+        .marquee-animate,
+        .bouncing-balls .ball,
+        .countdown-number,
+        .fab {
+          animation: none !important;
+        }
+        
+        .team-swiper {
+          scroll-behavior: smooth;
+        }
+      }
+      
+      /* Dark mode support */
+      @media (prefers-color-scheme: dark) {
+        .glass {
+          backdrop-filter: blur(20px);
+        }
+      }
+      
+      /* Mobile-specific classes */
+      .mobile-device .spline-container {
+        opacity: 0.7;
+      }
+      
+      .mobile-device .parallax-fixed {
+        transform: scale(0.8);
+      }
+      
+      /* Touch active states */
+      .touch-active {
+        transform: scale(0.95) !important;
+        opacity: 0.8;
+        transition: all 0.1s ease;
+      }
+      
+      /* Low performance optimizations */
+      .low-performance * {
+        animation-duration: 0.1s !important;
+      }
+      
+      .low-performance .progressive-image {
+        filter: none !important;
+      }
+      
+      .low-fps .marquee-animate,
+      .low-fps .team-marquee-track {
+        animation: none !important;
+      }
+      
+      /* Viewport height fix for mobile */
+      .full-height {
+        height: 100vh;
+        height: calc(var(--vh, 1vh) * 100);
+      }
+      
+      /* Safe area support for newer devices */
+      @supports (padding: max(0px)) {
+        .container {
+          padding-left: max(1rem, env(safe-area-inset-left));
+          padding-right: max(1rem, env(safe-area-inset-right));
+        }
+        
+        .fab {
+          bottom: max(2rem, env(safe-area-inset-bottom) + 1rem);
+          right: max(2rem, env(safe-area-inset-right) + 1rem);
+        }
+      }
+
       /* Table */
       .tbl th { text-align: left; font-weight: 500; color: rgba(255,255,255,0.85); }
       .tbl td, .tbl th { padding: 12px 16px; border-bottom: 1px solid rgba(255,255,255,0.08); }
@@ -54,9 +540,363 @@
         mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
         -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
       }
+
+      /* Masonry Grid */
+      .masonry {
+        column-count: 3;
+        column-gap: 1.5rem;
+      }
+
+      .masonry img {
+        width: 100%;
+        border-radius: 12px;
+        margin-bottom: 1.5rem;
+        display: block;
+        break-inside: avoid;
+        background: rgba(255,255,255,0.05);
+        border: 1px solid rgba(255,255,255,0.1);
+        backdrop-filter: blur(6px);
+        transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
+        ring: 1px solid rgba(255,255,255,0.08);
+      }
+
+      .masonry img:hover {
+        transform: scale(1.05);
+        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6);
+        filter: brightness(1.1);
+        border-color: rgba(255,255,255,0.2);
+      }
+
+      /* Masonry Responsive */
+      @media (max-width: 1024px) {
+        .masonry {
+          column-count: 2;
+        }
+      }
+      @media (max-width: 640px) {
+        .masonry {
+          column-count: 1;
+        }
+      }
+
+      /* Countdown Timer */
+      .countdown-container {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1.5rem;
+        max-width: 4xl;
+        margin: 0 auto;
+        width: 100%;
+      }
+
+      .countdown-item {
+        text-align: center;
+        position: relative;
+      }
+
+      .countdown-number {
+        font-size: 3.5rem;
+        font-weight: 300;
+        line-height: 1;
+        margin-bottom: 0.5rem;
+        background: linear-gradient(to right, rgb(96 165 250), rgb(167 139 250));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        transition: transform 0.3s ease;
+      }
+
+      .countdown-label {
+        font-size: 0.875rem;
+        color: rgba(255,255,255,0.7);
+        font-weight: 300;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+
+      .countdown-item:hover .countdown-number {
+        transform: scale(1.1);
+      }
+
+      /* Responsive countdown */
+      @media (max-width: 768px) {
+        .countdown-container {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 1rem;
+        }
+        .countdown-number {
+          font-size: 2.5rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .countdown-number {
+          font-size: 2rem;
+        }
+      }
+
+      /* Floating Action Button (FAB) */
+      .fab {
+        position: fixed;
+        bottom: 2rem;
+        right: 2rem;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+        color: white;
+        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 8px 24px rgba(59, 130, 246, 0.4);
+        z-index: 1000;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        animation: fab-pulse 2s infinite;
+      }
+
+      .fab:hover {
+        transform: scale(1.1);
+        box-shadow: 0 12px 32px rgba(59, 130, 246, 0.6);
+      }
+
+      .fab:active {
+        transform: scale(0.95);
+      }
+
+      @keyframes fab-pulse {
+        0%, 100% { box-shadow: 0 8px 24px rgba(59, 130, 246, 0.4); }
+        50% { box-shadow: 0 8px 24px rgba(59, 130, 246, 0.6); }
+      }
+
+      /* FAB responsive */
+      @media (max-width: 768px) {
+        .fab {
+          bottom: 1.5rem;
+          right: 1.5rem;
+          width: 56px;
+          height: 56px;
+        }
+      }
+
+      /* Loading Screen */
+      .loading-screen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #000000 0%, #1a1a2e 50%, #16213e 100%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
+      }
+
+      .loading-screen.fade-out {
+        opacity: 0;
+        visibility: hidden;
+      }
+
+      /* Sports Ball Loader */
+      .sports-loader {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+      }
+
+      .bouncing-balls {
+        display: flex;
+        gap: 10px;
+      }
+
+      .ball {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        animation: bounce-loader 1.5s infinite ease-in-out;
+      }
+
+      .ball:nth-child(1) {
+        background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+        animation-delay: 0s;
+      }
+
+      .ball:nth-child(2) {
+        background: linear-gradient(45deg, #4ecdc4, #6ee7dc);
+        animation-delay: 0.3s;
+      }
+
+      .ball:nth-child(3) {
+        background: linear-gradient(45deg, #45b7d1, #6bc5e8);
+        animation-delay: 0.6s;
+      }
+
+      .ball:nth-child(4) {
+        background: linear-gradient(45deg, #f9ca24, #f0932b);
+        animation-delay: 0.9s;
+      }
+
+      @keyframes bounce-loader {
+        0%, 20%, 50%, 80%, 100% {
+          transform: translateY(0) scale(1);
+        }
+        40% {
+          transform: translateY(-30px) scale(1.1);
+        }
+        60% {
+          transform: translateY(-15px) scale(1.05);
+        }
+      }
+
+      /* Loading Text */
+      .loading-text {
+        color: white;
+        font-size: 1.5rem;
+        font-weight: 300;
+        margin-bottom: 1rem;
+        background: linear-gradient(to right, rgb(96 165 250), rgb(167 139 250));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        animation: pulse-text 2s ease-in-out infinite;
+      }
+
+      .loading-subtitle {
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 1rem;
+        font-weight: 300;
+      }
+
+      @keyframes pulse-text {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.7; }
+      }
+
+      /* Progress Bar */
+      .loading-progress {
+        width: 200px;
+        height: 4px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+        overflow: hidden;
+        margin-top: 2rem;
+      }
+
+      .progress-fill {
+        height: 100%;
+        background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+        border-radius: 10px;
+        animation: loading-progress 3s ease-in-out infinite;
+      }
+
+      @keyframes loading-progress {
+        0% { width: 0%; }
+        50% { width: 70%; }
+        100% { width: 100%; }
+      }
+
+      /* Progressive Loading Styles */
+      .progressive-load {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.6s ease-out;
+      }
+
+      .progressive-load.loaded {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Image Progressive Loading */
+      .progressive-image {
+        opacity: 0;
+        filter: blur(5px);
+        transition: all 0.8s ease-out;
+        background: linear-gradient(45deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+        background-size: 200% 200%;
+        animation: shimmer 1.5s infinite;
+      }
+
+      .progressive-image.loaded {
+        opacity: 1;
+        filter: blur(0);
+      }
+
+      .progressive-image.loading {
+        min-height: 200px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .progressive-image.loading::after {
+        content: "📸";
+        font-size: 2rem;
+        opacity: 0.3;
+      }
+
+      /* Shimmer effect for loading placeholders */
+      @keyframes shimmer {
+        0% { background-position: 200% 0; }
+        100% { background-position: -200% 0; }
+      }
+
+      /* Spline background progressive load */
+      .spline-container {
+        opacity: 0;
+        transition: opacity 1s ease-in-out;
+      }
+
+      .spline-container.loaded {
+        opacity: 1;
+      }
+
+      /* Loading stages */
+      .stage-1 { animation-delay: 0.1s; }
+      .stage-2 { animation-delay: 0.3s; }
+      .stage-3 { animation-delay: 0.5s; }
+      .stage-4 { animation-delay: 0.7s; }
+      .stage-5 { animation-delay: 0.9s; }
+
+      /* Content sections progressive loading */
+      .content-section {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.8s ease-out;
+      }
+
+      .content-section.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
     </style>
   </head>
   <body class="bg-black text-white antialiased selection:bg-white/20 scroll-smooth">
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+      <div class="sports-loader">
+        <div class="loading-text">Sports Club Championship</div>
+        <div class="loading-subtitle">Preparing your experience...</div>
+        
+        <div class="bouncing-balls">
+          <div class="ball"></div>
+          <div class="ball"></div>
+          <div class="ball"></div>
+          <div class="ball"></div>
+        </div>
+        
+        <div class="loading-progress">
+          <div class="progress-fill"></div>
+        </div>
+      </div>
+    </div>
+
     <!-- Parallax Background Layers -->
     <div aria-hidden="true" class="parallax-fixed">
       <div class="p-layer p1"></div>
@@ -82,21 +922,21 @@
             </div>
             <span class="ml-3 text-xl tracking-tight sf-pro-display">Axiom Docs</span>
           </div>
-          <div class="hidden md:flex space-x-8 text-sm text-gray-300">
+          <div class="hidden md:flex space-x-6 text-sm text-gray-300">
             <a href="#about" class="hover:text-white transition-colors">About</a>
             <a href="#sports" class="hover:text-white transition-colors">Sports</a>
+            <a href="#venue" class="hover:text-white transition-colors">Venue</a>
+            <a href="#brochure" class="hover:text-white transition-colors">Brochure</a>
+            <a href="#rules" class="hover:text-white transition-colors">Rules</a>
             <a href="#registration" class="hover:text-white transition-colors">Registration</a>
-            <a href="#sponsors" class="hover:text-white transition-colors">Sponsors</a>
             <a href="#gallery" class="hover:text-white transition-colors">Gallery</a>
             <a href="#team" class="hover:text-white transition-colors">Team</a>
             <a href="#contact" class="hover:text-white transition-colors">Contact</a>
           </div>
           <div class="flex items-center gap-2">
-            <button class="hidden md:inline-flex text-sm border border-gray-700 rounded-md px-4 py-2 hover:bg-white/5 transition-all focus-ring">
-              <i data-lucide="search" class="w-4 h-4 mr-2" stroke-width="1.5"></i>Search
-              <span class="ml-2 kbd">/</span>
+            <button class="bg-white text-black font-medium rounded-md px-6 py-2 hover:bg-opacity-90 transition-all focus-ring">
+              Register Now
             </button>
-            <button class="text-sm border border-gray-700 rounded-md px-4 py-2 hover:bg-white/5 transition-all focus-ring">Sign in</button>
           </div>
         </div>
 
@@ -105,8 +945,10 @@
           <div class="flex items-center gap-2 overflow-x-auto no-scrollbar whitespace-nowrap px-1">
             <a href="#about" class="px-3 py-1.5 text-xs rounded-lg bg-white/5 border border-white/10 hover:border-white/20 hover:bg-white/10 transition">About</a>
             <a href="#sports" class="px-3 py-1.5 text-xs rounded-lg bg-white/5 border border-white/10 hover:border-white/20 hover:bg-white/10 transition">Sports</a>
+            <a href="#venue" class="px-3 py-1.5 text-xs rounded-lg bg-white/5 border border-white/10 hover:border-white/20 hover:bg-white/10 transition">Venue</a>
+            <a href="#brochure" class="px-3 py-1.5 text-xs rounded-lg bg-white/5 border border-white/10 hover:border-white/20 hover:bg-white/10 transition">Brochure</a>
+            <a href="#rules" class="px-3 py-1.5 text-xs rounded-lg bg-white/5 border border-white/10 hover:border-white/20 hover:bg-white/10 transition">Rules</a>
             <a href="#registration" class="px-3 py-1.5 text-xs rounded-lg bg-white/5 border border-white/10 hover:border-white/20 hover:bg-white/10 transition">Registration</a>
-            <a href="#sponsors" class="px-3 py-1.5 text-xs rounded-lg bg-white/5 border border-white/10 hover:border-white/20 hover:bg-white/10 transition">Sponsors</a>
             <a href="#gallery" class="px-3 py-1.5 text-xs rounded-lg bg-white/5 border border-white/10 hover:border-white/20 hover:bg-white/10 transition">Gallery</a>
             <a href="#team" class="px-3 py-1.5 text-xs rounded-lg bg-white/5 border border-white/10 hover:border-white/20 hover:bg-white/10 transition">Team</a>
             <a href="#contact" class="px-3 py-1.5 text-xs rounded-lg bg-white/5 border border-white/10 hover:border-white/20 hover:bg-white/10 transition">Contact</a>
@@ -133,23 +975,26 @@
             </a>
           </div>
 
-          <!-- Stats -->
-          <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-14 max-w-4xl mx-auto w-full">
-            <div class="glass rounded-xl border border-white/10 p-4 ring-contrast" data-animate="" style="--d: .1s;">
-              <p class="text-4xl font-light mb-1 tracking-tight">99.99%</p>
-              <p class="text-gray-400 font-extralight">API uptime</p>
-            </div>
-            <div class="glass rounded-xl border border-white/10 p-4 ring-contrast" data-animate="" style="--d: .15s;">
-              <p class="text-4xl font-light mb-1 tracking-tight">250ms</p>
-              <p class="text-gray-400 font-extralight">Global p95</p>
-            </div>
-            <div class="glass rounded-xl border border-white/10 p-4 ring-contrast" data-animate="" style="--d: .2s;">
-              <p class="text-4xl font-light mb-1 tracking-tight">40+</p>
-              <p class="text-gray-400 font-extralight">Endpoints</p>
-            </div>
-            <div class="glass rounded-xl border border-white/10 p-4 ring-contrast" data-animate="" style="--d: .25s;">
-              <p class="text-4xl font-light mb-1 tracking-tight">12</p>
-              <p class="text-gray-400 font-extralight">SDKs</p>
+          <!-- Event Countdown -->
+          <div class="mt-14" data-animate="" style="--d: .1s;">
+            <h3 class="text-xl font-light text-center mb-8 text-white/80 tracking-tight">Event Starts In</h3>
+            <div class="countdown-container">
+              <div class="glass rounded-xl border border-white/10 p-6 ring-contrast countdown-item" data-animate="" style="--d: .1s;">
+                <div class="countdown-number" id="days">15</div>
+                <div class="countdown-label">Days</div>
+              </div>
+              <div class="glass rounded-xl border border-white/10 p-6 ring-contrast countdown-item" data-animate="" style="--d: .15s;">
+                <div class="countdown-number" id="hours">00</div>
+                <div class="countdown-label">Hours</div>
+              </div>
+              <div class="glass rounded-xl border border-white/10 p-6 ring-contrast countdown-item" data-animate="" style="--d: .2s;">
+                <div class="countdown-number" id="minutes">00</div>
+                <div class="countdown-label">Minutes</div>
+              </div>
+              <div class="glass rounded-xl border border-white/10 p-6 ring-contrast countdown-item" data-animate="" style="--d: .25s;">
+                <div class="countdown-number" id="seconds">00</div>
+                <div class="countdown-label">Seconds</div>
+              </div>
             </div>
           </div>
         </div>
@@ -234,7 +1079,7 @@
               <!-- Football -->
               <div class="swiper-slide w-[260px] h-[320px] sm:w-[300px] sm:h-[340px] md:w-[360px] md:h-[360px]">
                 <div class="relative w-full h-full rounded-2xl overflow-hidden border border-white/10 glass ring-1 ring-white/10">
-                  <img src="https://source.unsplash.com/800x600/?football" alt="Football" class="absolute inset-0 w-full h-full object-cover">
+                  <img src="https://source.unsplash.com/800x600/?football" alt="Football" class="absolute inset-0 w-full h-full object-cover progressive-image" loading="lazy">
                   <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
                   <div class="absolute bottom-0 w-full p-4">
                     <h3 class="text-lg font-medium tracking-tight">Football</h3>
@@ -245,7 +1090,7 @@
               <!-- Basketball -->
               <div class="swiper-slide w-[260px] h-[320px] sm:w-[300px] sm:h-[340px] md:w-[360px] md:h-[360px]">
                 <div class="relative w-full h-full rounded-2xl overflow-hidden border border-white/10 glass ring-1 ring-white/10">
-                  <img src="https://source.unsplash.com/800x600/?basketball" alt="Basketball" class="absolute inset-0 w-full h-full object-cover">
+                  <img src="https://source.unsplash.com/800x600/?basketball" alt="Basketball" class="absolute inset-0 w-full h-full object-cover progressive-image" loading="lazy">
                   <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
                   <div class="absolute bottom-0 w-full p-4">
                     <h3 class="text-lg font-medium tracking-tight">Basketball</h3>
@@ -256,7 +1101,7 @@
               <!-- Athletics -->
               <div class="swiper-slide w-[260px] h-[320px] sm:w-[300px] sm:h-[340px] md:w-[360px] md:h-[360px]">
                 <div class="relative w-full h-full rounded-2xl overflow-hidden border border-white/10 glass ring-1 ring-white/10">
-                  <img src="https://source.unsplash.com/800x600/?running" alt="Athletics" class="absolute inset-0 w-full h-full object-cover">
+                  <img src="https://source.unsplash.com/800x600/?running" alt="Athletics" class="absolute inset-0 w-full h-full object-cover progressive-image" loading="lazy">
                   <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
                   <div class="absolute bottom-0 w-full p-4">
                     <h3 class="text-lg font-medium tracking-tight">Athletics</h3>
@@ -267,7 +1112,7 @@
               <!-- Optional extra slides for depth -->
               <div class="swiper-slide w-[260px] h-[320px] sm:w-[300px] sm:h-[340px] md:w-[360px] md:h-[360px]">
                 <div class="relative w-full h-full rounded-2xl overflow-hidden border border-white/10 glass ring-1 ring-white/10">
-                  <img src="https://source.unsplash.com/800x600/?tennis" alt="Tennis" class="absolute inset-0 w-full h-full object-cover">
+                  <img src="https://source.unsplash.com/800x600/?tennis" alt="Tennis" class="absolute inset-0 w-full h-full object-cover progressive-image" loading="lazy">
                   <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
                   <div class="absolute bottom-0 w-full p-4">
                     <h3 class="text-lg font-medium tracking-tight">Tennis</h3>
@@ -277,7 +1122,7 @@
               </div>
               <div class="swiper-slide w-[260px] h-[320px] sm:w-[300px] sm:h-[340px] md:w-[360px] md:h-[360px]">
                 <div class="relative w-full h-full rounded-2xl overflow-hidden border border-white/10 glass ring-1 ring-white/10">
-                  <img src="https://source.unsplash.com/800x600/?swimming" alt="Swimming" class="absolute inset-0 w-full h-full object-cover">
+                  <img src="https://source.unsplash.com/800x600/?swimming" alt="Swimming" class="absolute inset-0 w-full h-full object-cover progressive-image" loading="lazy">
                   <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
                   <div class="absolute bottom-0 w-full p-4">
                     <h3 class="text-lg font-medium tracking-tight">Swimming</h3>
@@ -288,6 +1133,152 @@
             </div>
           </div>
 
+        </div>
+      </section>
+
+      <!-- Location/Venue Section -->
+      <section id="venue" class="container mx-auto px-6 mt-16 scroll-mt-24">
+        <div class="max-w-6xl mx-auto glass rounded-2xl border border-white/10 ring-contrast p-8" data-animate="" style="--d:.09s;">
+          <h2 class="text-3xl tracking-tight font-light mb-8 title-gradient text-center">Venue & Location</h2>
+          <div class="grid md:grid-cols-2 gap-8 items-center">
+            <div>
+              <h3 class="text-2xl font-light mb-4 text-white">Olympic Sports Complex</h3>
+              <div class="space-y-4 text-white/80">
+                <div class="flex items-center gap-3">
+                  <i data-lucide="map-pin" class="w-5 h-5 text-blue-400" stroke-width="1.5"></i>
+                  <span>123 Championship Drive, Sports City, SC 12345</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <i data-lucide="car" class="w-5 h-5 text-green-400" stroke-width="1.5"></i>
+                  <span>Free parking available for all participants</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <i data-lucide="train" class="w-5 h-5 text-purple-400" stroke-width="1.5"></i>
+                  <span>Metro Station: Sports Complex (Line 2)</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <i data-lucide="clock" class="w-5 h-5 text-yellow-400" stroke-width="1.5"></i>
+                  <span>Event Time: 9:00 AM - 6:00 PM</span>
+                </div>
+              </div>
+              <div class="mt-6">
+                <button class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg transition-colors focus-ring">
+                  <i data-lucide="navigation" class="w-4 h-4 mr-2" stroke-width="1.5"></i>
+                  Get Directions
+                </button>
+              </div>
+            </div>
+            <div class="relative">
+              <div class="aspect-video rounded-xl overflow-hidden bg-gradient-to-br from-blue-600/20 to-purple-600/20 border border-white/10">
+                <img src="https://source.unsplash.com/600x400/?stadium,sports-complex" alt="Olympic Sports Complex" class="w-full h-full object-cover progressive-image" loading="lazy">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+                <div class="absolute bottom-4 left-4">
+                  <p class="text-white font-medium">State-of-the-art facilities</p>
+                  <p class="text-white/70 text-sm">Capacity: 25,000 spectators</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Brochure Section -->
+      <section id="brochure" class="container mx-auto px-6 mt-16 scroll-mt-24">
+        <div class="max-w-6xl mx-auto glass rounded-2xl border border-white/10 ring-contrast p-8" data-animate="" style="--d:.095s;">
+          <h2 class="text-3xl tracking-tight font-light mb-8 title-gradient text-center">Event Brochure</h2>
+          <div class="grid md:grid-cols-3 gap-6">
+            <div class="bg-white/5 border border-white/10 rounded-xl p-6 hover:bg-white/10 transition-colors">
+              <div class="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center mb-4">
+                <i data-lucide="download" class="w-6 h-6 text-white" stroke-width="1.5"></i>
+              </div>
+              <h3 class="text-xl font-medium mb-3">Event Schedule</h3>
+              <p class="text-white/70 mb-4">Complete timeline of all sports events, ceremonies, and activities.</p>
+              <button class="text-blue-400 hover:text-blue-300 transition-colors font-medium">
+                Download PDF →
+              </button>
+            </div>
+            <div class="bg-white/5 border border-white/10 rounded-xl p-6 hover:bg-white/10 transition-colors">
+              <div class="w-12 h-12 bg-purple-600 rounded-lg flex items-center justify-center mb-4">
+                <i data-lucide="map" class="w-6 h-6 text-white" stroke-width="1.5"></i>
+              </div>
+              <h3 class="text-xl font-medium mb-3">Venue Map</h3>
+              <p class="text-white/70 mb-4">Detailed layout of sports venues, facilities, and spectator areas.</p>
+              <button class="text-purple-400 hover:text-purple-300 transition-colors font-medium">
+                Download PDF →
+              </button>
+            </div>
+            <div class="bg-white/5 border border-white/10 rounded-xl p-6 hover:bg-white/10 transition-colors">
+              <div class="w-12 h-12 bg-green-600 rounded-lg flex items-center justify-center mb-4">
+                <i data-lucide="info" class="w-6 h-6 text-white" stroke-width="1.5"></i>
+              </div>
+              <h3 class="text-xl font-medium mb-3">Participant Guide</h3>
+              <p class="text-white/70 mb-4">Essential information for athletes, coaches, and participants.</p>
+              <button class="text-green-400 hover:text-green-300 transition-colors font-medium">
+                Download PDF →
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Rules Section -->
+      <section id="rules" class="container mx-auto px-6 mt-16 scroll-mt-24">
+        <div class="max-w-6xl mx-auto glass rounded-2xl border border-white/10 ring-contrast p-8" data-animate="" style="--d:.098s;">
+          <h2 class="text-3xl tracking-tight font-light mb-8 title-gradient text-center">Competition Rules</h2>
+          <div class="grid md:grid-cols-2 gap-8">
+            <div>
+              <h3 class="text-xl font-medium mb-4 text-white">General Rules</h3>
+              <div class="space-y-3">
+                <div class="flex items-start gap-3">
+                  <div class="w-2 h-2 bg-blue-400 rounded-full mt-2 flex-shrink-0"></div>
+                  <p class="text-white/80">All participants must register 48 hours before the event</p>
+                </div>
+                <div class="flex items-start gap-3">
+                  <div class="w-2 h-2 bg-blue-400 rounded-full mt-2 flex-shrink-0"></div>
+                  <p class="text-white/80">Valid ID and medical clearance certificate required</p>
+                </div>
+                <div class="flex items-start gap-3">
+                  <div class="w-2 h-2 bg-blue-400 rounded-full mt-2 flex-shrink-0"></div>
+                  <p class="text-white/80">Age categories: Under 18, 18-35, 35-50, 50+</p>
+                </div>
+                <div class="flex items-start gap-3">
+                  <div class="w-2 h-2 bg-blue-400 rounded-full mt-2 flex-shrink-0"></div>
+                  <p class="text-white/80">Fair play and sportsmanship expected at all times</p>
+                </div>
+              </div>
+            </div>
+            <div>
+              <h3 class="text-xl font-medium mb-4 text-white">Equipment & Safety</h3>
+              <div class="space-y-3">
+                <div class="flex items-start gap-3">
+                  <div class="w-2 h-2 bg-green-400 rounded-full mt-2 flex-shrink-0"></div>
+                  <p class="text-white/80">Approved safety gear mandatory for all contact sports</p>
+                </div>
+                <div class="flex items-start gap-3">
+                  <div class="w-2 h-2 bg-green-400 rounded-full mt-2 flex-shrink-0"></div>
+                  <p class="text-white/80">Personal equipment inspection before competition</p>
+                </div>
+                <div class="flex items-start gap-3">
+                  <div class="w-2 h-2 bg-green-400 rounded-full mt-2 flex-shrink-0"></div>
+                  <p class="text-white/80">First aid stations available at all venues</p>
+                </div>
+                <div class="flex items-start gap-3">
+                  <div class="w-2 h-2 bg-green-400 rounded-full mt-2 flex-shrink-0"></div>
+                  <p class="text-white/80">Emergency procedures briefing before events</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="mt-8 p-6 bg-yellow-600/10 border border-yellow-600/20 rounded-xl">
+            <div class="flex items-center gap-3 mb-3">
+              <i data-lucide="alert-triangle" class="w-5 h-5 text-yellow-400" stroke-width="1.5"></i>
+              <h4 class="font-medium text-yellow-400">Important Notice</h4>
+            </div>
+            <p class="text-white/80">Complete rulebook available for download. All participants must acknowledge reading and understanding the rules before competition.</p>
+            <button class="mt-4 bg-yellow-600 hover:bg-yellow-700 text-black px-6 py-2 rounded-lg transition-colors font-medium">
+              Download Complete Rulebook
+            </button>
+          </div>
         </div>
       </section>
 
@@ -315,14 +1306,26 @@
         </div>
       </section>
 
-      <!-- Gallery / Highlights -->
+      <!-- Masonry Gallery -->
       <section id="gallery" class="container mx-auto px-6 mt-16 scroll-mt-24">
         <div class="max-w-6xl mx-auto glass rounded-2xl border border-white/10 ring-contrast p-8" data-animate="" style="--d:.14s;">
-          <h2 class="text-3xl tracking-tight font-light mb-6 title-gradient text-center">Gallery &amp; Highlights</h2>
-          <div class="grid md:grid-cols-3 gap-6">
-            <img src="https://source.unsplash.com/600x400/?stadium" class="rounded-lg object-cover w-full h-56 hover:brightness-110 transition" alt="Highlight">
-            <img src="https://source.unsplash.com/600x400/?sports" class="rounded-lg object-cover w-full h-56 hover:brightness-110 transition" alt="Highlight">
-            <img src="https://source.unsplash.com/600x400/?crowd" class="rounded-lg object-cover w-full h-56 hover:brightness-110 transition" alt="Highlight">
+          <h2 class="text-3xl tracking-tight font-light mb-6 title-gradient text-center">
+            Gallery &amp; Highlights
+          </h2>
+
+          <div class="masonry">
+            <img src="https://source.unsplash.com/400x600/?sports" alt="Sports Highlight" class="progressive-image" loading="lazy">
+            <img src="https://source.unsplash.com/400x300/?football" alt="Football" class="progressive-image" loading="lazy">
+            <img src="https://source.unsplash.com/400x500/?basketball" alt="Basketball" class="progressive-image" loading="lazy">
+            <img src="https://source.unsplash.com/400x400/?stadium" alt="Stadium" class="progressive-image" loading="lazy">
+            <img src="https://source.unsplash.com/400x600/?crowd" alt="Crowd" class="progressive-image" loading="lazy">
+            <img src="https://source.unsplash.com/400x500/?athlete" alt="Athlete" class="progressive-image" loading="lazy">
+            <img src="https://source.unsplash.com/400x350/?running" alt="Running" class="progressive-image" loading="lazy">
+            <img src="https://source.unsplash.com/400x600/?team" alt="Team" class="progressive-image" loading="lazy">
+            <img src="https://source.unsplash.com/400x450/?tennis" alt="Tennis" class="progressive-image" loading="lazy">
+            <img src="https://source.unsplash.com/400x320/?swimming" alt="Swimming" class="progressive-image" loading="lazy">
+            <img src="https://source.unsplash.com/400x550/?volleyball" alt="Volleyball" class="progressive-image" loading="lazy">
+            <img src="https://source.unsplash.com/400x380/?soccer" alt="Soccer" class="progressive-image" loading="lazy">
           </div>
         </div>
       </section>
@@ -330,47 +1333,411 @@
       <!-- Team / Organizers -->
       <section id="team" class="container mx-auto px-6 mt-16 scroll-mt-24">
         <div class="max-w-6xl mx-auto glass rounded-2xl border border-white/10 ring-contrast p-8" data-animate="" style="--d:.16s;">
-          <h2 class="text-3xl tracking-tight font-light mb-6 title-gradient text-center">Team &amp; Organizers</h2>
-          <div class="grid md:grid-cols-3 gap-6">
-            <div class="text-center">
-              <img src="https://source.unsplash.com/200x200/?person" class="w-32 h-32 rounded-full mx-auto mb-3 object-cover ring-1 ring-white/10">
-              <h3 class="text-lg font-medium">Jane Doe</h3>
-              <p class="text-sm text-white/70">Event Director</p>
+          <h2 class="text-3xl tracking-tight font-light mb-2 title-gradient text-center">Team &amp; Organizers</h2>
+          <p class="text-center text-white/70 max-w-2xl mx-auto mb-6">Drag or swipe to meet our dedicated team working behind the scenes</p>
+          
+          <div class="swiper team-swiper">
+            <div class="swiper-wrapper">
+              <!-- Jane Doe -->
+              <div class="swiper-slide">
+                <div class="team-member">
+                  <img src="https://source.unsplash.com/200x200/?businesswoman" alt="Jane Doe" class="progressive-image" loading="lazy">
+                  <h3>Jane Doe</h3>
+                  <p>Event Director</p>
+                  <div class="role-badge">Leadership</div>
+                </div>
+              </div>
+              <!-- John Smith -->
+              <div class="swiper-slide">
+                <div class="team-member">
+                  <img src="https://source.unsplash.com/200x200/?businessman" alt="John Smith" class="progressive-image" loading="lazy">
+                  <h3>John Smith</h3>
+                  <p>Sports Coordinator</p>
+                  <div class="role-badge">Operations</div>
+                </div>
+              </div>
+              <!-- Alex Kim -->
+              <div class="swiper-slide">
+                <div class="team-member">
+                  <img src="https://source.unsplash.com/200x200/?professional-woman" alt="Alex Kim" class="progressive-image" loading="lazy">
+                  <h3>Alex Kim</h3>
+                  <p>Sponsorship Manager</p>
+                  <div class="role-badge">Partnerships</div>
+                </div>
+              </div>
+              <!-- Mike Johnson -->
+              <div class="swiper-slide">
+                <div class="team-member">
+                  <img src="https://source.unsplash.com/200x200/?coach" alt="Mike Johnson" class="progressive-image" loading="lazy">
+                  <h3>Mike Johnson</h3>
+                  <p>Head Coach</p>
+                  <div class="role-badge">Training</div>
+                </div>
+              </div>
+              <!-- Sarah Wilson -->
+              <div class="swiper-slide">
+                <div class="team-member">
+                  <img src="https://source.unsplash.com/200x200/?referee" alt="Sarah Wilson" class="progressive-image" loading="lazy">
+                  <h3>Sarah Wilson</h3>
+                  <p>Chief Referee</p>
+                  <div class="role-badge">Officiating</div>
+                </div>
+              </div>
+              <!-- Dr. Brown -->
+              <div class="swiper-slide">
+                <div class="team-member">
+                  <img src="https://source.unsplash.com/200x200/?medical-staff" alt="Dr. Brown" class="progressive-image" loading="lazy">
+                  <h3>Dr. Brown</h3>
+                  <p>Medical Officer</p>
+                  <div class="role-badge">Health & Safety</div>
+                </div>
+              </div>
+              <!-- Lisa Chen -->
+              <div class="swiper-slide">
+                <div class="team-member">
+                  <img src="https://source.unsplash.com/200x200/?photographer" alt="Lisa Chen" class="progressive-image" loading="lazy">
+                  <h3>Lisa Chen</h3>
+                  <p>Media Manager</p>
+                  <div class="role-badge">Communications</div>
+                </div>
+              </div>
+              <!-- Tom Davis -->
+              <div class="swiper-slide">
+                <div class="team-member">
+                  <img src="https://source.unsplash.com/200x200/?security" alt="Tom Davis" class="progressive-image" loading="lazy">
+                  <h3>Tom Davis</h3>
+                  <p>Security Head</p>
+                  <div class="role-badge">Security</div>
+                </div>
+              </div>
+              <!-- Emma Rodriguez -->
+              <div class="swiper-slide">
+                <div class="team-member">
+                  <img src="https://source.unsplash.com/200x200/?volunteer-coordinator" alt="Emma Rodriguez" class="progressive-image" loading="lazy">
+                  <h3>Emma Rodriguez</h3>
+                  <p>Volunteer Coordinator</p>
+                  <div class="role-badge">Community</div>
+                </div>
+              </div>
+              <!-- David Park -->
+              <div class="swiper-slide">
+                <div class="team-member">
+                  <img src="https://source.unsplash.com/200x200/?tech-specialist" alt="David Park" class="progressive-image" loading="lazy">
+                  <h3>David Park</h3>
+                  <p>Tech Specialist</p>
+                  <div class="role-badge">Technology</div>
+                </div>
+              </div>
             </div>
-            <div class="text-center">
-              <img src="https://source.unsplash.com/200x200/?man" class="w-32 h-32 rounded-full mx-auto mb-3 object-cover ring-1 ring-white/10">
-              <h3 class="text-lg font-medium">John Smith</h3>
-              <p class="text-sm text-white/70">Sports Coordinator</p>
+          </div>
+          
+          <!-- Navigation buttons -->
+          <div class="team-navigation">
+            <div class="team-nav-btn team-prev">
+              <i data-lucide="chevron-left" class="w-5 h-5" stroke-width="2"></i>
             </div>
-            <div class="text-center">
-              <img src="https://source.unsplash.com/200x200/?woman" class="w-32 h-32 rounded-full mx-auto mb-3 object-cover ring-1 ring-white/10">
-              <h3 class="text-lg font-medium">Alex Kim</h3>
-              <p class="text-sm text-white/70">Sponsorship Manager</p>
+            <div class="team-nav-btn team-next">
+              <i data-lucide="chevron-right" class="w-5 h-5" stroke-width="2"></i>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Contact Us -->
+      <!-- Contact, Venue & Location Hub -->
       <section id="contact" class="container mx-auto px-6 mt-16 mb-24 scroll-mt-24">
-        <div class="max-w-5xl mx-auto glass rounded-2xl border border-white/10 ring-contrast p-8" data-animate="" style="--d:.18s;">
-          <h2 class="text-3xl tracking-tight font-light mb-6 title-gradient text-center">Contact Us</h2>
-          <form class="max-w-xl mx-auto space-y-4">
-            <input type="text" placeholder="Your Name" class="w-full rounded-md p-3 bg-white/5 border border-white/10 focus:outline-none focus:ring-2 focus:ring-white/20">
-            <input type="email" placeholder="Your Email" class="w-full rounded-md p-3 bg-white/5 border border-white/10 focus:outline-none focus:ring-2 focus:ring-white/20">
-            <textarea rows="4" placeholder="Your Message" class="w-full rounded-md p-3 bg-white/5 border border-white/10 focus:outline-none focus:ring-2 focus:ring-white/20"></textarea>
-            <button class="bg-white text-black px-6 py-3 rounded-lg hover:bg-opacity-90 transition w-full focus-ring">Send Message</button>
-          </form>
+        <div class="max-w-7xl mx-auto glass rounded-2xl border border-white/10 ring-contrast p-8" data-animate="" style="--d:.18s;">
+          <div class="text-center mb-12">
+            <h2 class="text-3xl tracking-tight font-light mb-4 title-gradient">Contact & Venue Information</h2>
+            <p class="text-white/70 max-w-2xl mx-auto">Get in touch with us and find everything you need to know about the event location</p>
+          </div>
+          
+          <div class="grid lg:grid-cols-2 gap-12">
+            <!-- Contact Information -->
+            <div class="space-y-8">
+              <!-- Phone Contact -->
+              <div class="text-center lg:text-left">
+                <h3 class="text-2xl font-light mb-6 text-white flex items-center justify-center lg:justify-start gap-3">
+                  <i data-lucide="phone" class="w-6 h-6 text-blue-400" stroke-width="1.5"></i>
+                  Contact Us
+                </h3>
+                <div class="bg-gradient-to-r from-blue-600/20 to-purple-600/20 border border-blue-500/30 rounded-2xl p-8">
+                  <div class="flex flex-col items-center space-y-4">
+                    <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center">
+                      <i data-lucide="phone-call" class="w-8 h-8 text-white" stroke-width="1.5"></i>
+                    </div>
+                    <div class="text-center">
+                      <p class="text-white/80 mb-2">Event Hotline</p>
+                      <a href="tel:+1234567890" class="text-2xl font-semibold text-white hover:text-blue-400 transition-colors">+1 (234) 567-8900</a>
+                      <p class="text-sm text-white/60 mt-2">Available 24/7 for event inquiries</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Additional Contact Methods -->
+              <div class="grid md:grid-cols-2 gap-4">
+                <div class="bg-white/5 border border-white/10 rounded-xl p-4 hover:bg-white/10 transition-colors">
+                  <div class="flex items-center gap-3 mb-2">
+                    <i data-lucide="mail" class="w-5 h-5 text-green-400" stroke-width="1.5"></i>
+                    <span class="font-medium text-white">Email</span>
+                  </div>
+                  <a href="mailto:info@sportsclub.com" class="text-white/70 hover:text-green-400 transition-colors">info@sportsclub.com</a>
+                </div>
+                <div class="bg-white/5 border border-white/10 rounded-xl p-4 hover:bg-white/10 transition-colors">
+                  <div class="flex items-center gap-3 mb-2">
+                    <i data-lucide="message-circle" class="w-5 h-5 text-purple-400" stroke-width="1.5"></i>
+                    <span class="font-medium text-white">WhatsApp</span>
+                  </div>
+                  <a href="https://wa.me/1234567890" class="text-white/70 hover:text-purple-400 transition-colors">+1 (234) 567-8900</a>
+                </div>
+              </div>
+              
+              <!-- Social Media -->
+              <div>
+                <h4 class="text-lg font-medium mb-4 text-white flex items-center gap-2">
+                  <i data-lucide="share-2" class="w-5 h-5 text-yellow-400" stroke-width="1.5"></i>
+                  Follow Us
+                </h4>
+                <div class="flex gap-4">
+                  <a href="#" class="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center hover:scale-110 transition-transform">
+                    <i data-lucide="facebook" class="w-5 h-5 text-white" stroke-width="1.5"></i>
+                  </a>
+                  <a href="#" class="w-12 h-12 bg-sky-500 rounded-lg flex items-center justify-center hover:scale-110 transition-transform">
+                    <i data-lucide="twitter" class="w-5 h-5 text-white" stroke-width="1.5"></i>
+                  </a>
+                  <a href="#" class="w-12 h-12 bg-pink-600 rounded-lg flex items-center justify-center hover:scale-110 transition-transform">
+                    <i data-lucide="instagram" class="w-5 h-5 text-white" stroke-width="1.5"></i>
+                  </a>
+                  <a href="#" class="w-12 h-12 bg-red-600 rounded-lg flex items-center justify-center hover:scale-110 transition-transform">
+                    <i data-lucide="youtube" class="w-5 h-5 text-white" stroke-width="1.5"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Venue & Location Information -->
+            <div class="space-y-8">
+              <!-- Venue Details -->
+              <div>
+                <h3 class="text-2xl font-light mb-6 text-white flex items-center gap-3">
+                  <i data-lucide="map-pin" class="w-6 h-6 text-red-400" stroke-width="1.5"></i>
+                  Event Venue
+                </h3>
+                <div class="bg-gradient-to-br from-red-600/20 to-orange-600/20 border border-red-500/30 rounded-2xl p-6">
+                  <h4 class="text-xl font-semibold text-white mb-4">Olympic Sports Complex</h4>
+                  <div class="space-y-3">
+                    <div class="flex items-start gap-3">
+                      <i data-lucide="map-pin" class="w-5 h-5 text-red-400 mt-0.5" stroke-width="1.5"></i>
+                      <div>
+                        <p class="text-white/90">123 Championship Drive</p>
+                        <p class="text-white/90">Sports City, SC 12345</p>
+                      </div>
+                    </div>
+                    <div class="flex items-center gap-3">
+                      <i data-lucide="clock" class="w-5 h-5 text-yellow-400" stroke-width="1.5"></i>
+                      <span class="text-white/80">Event Time: 9:00 AM - 6:00 PM</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                      <i data-lucide="users" class="w-5 h-5 text-green-400" stroke-width="1.5"></i>
+                      <span class="text-white/80">Capacity: 25,000 spectators</span>
+                    </div>
+                  </div>
+                  
+                  <!-- Action Buttons -->
+                  <div class="flex flex-col sm:flex-row gap-3 mt-6">
+                    <button class="flex-1 bg-red-600 hover:bg-red-700 text-white px-4 py-3 rounded-lg transition-colors focus-ring flex items-center justify-center gap-2">
+                      <i data-lucide="navigation" class="w-4 h-4" stroke-width="1.5"></i>
+                      Get Directions
+                    </button>
+                    <button class="flex-1 bg-white/10 hover:bg-white/20 text-white px-4 py-3 rounded-lg transition-colors focus-ring flex items-center justify-center gap-2">
+                      <i data-lucide="map" class="w-4 h-4" stroke-width="1.5"></i>
+                      View Map
+                    </button>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Transportation & Parking -->
+              <div>
+                <h4 class="text-lg font-medium mb-4 text-white flex items-center gap-2">
+                  <i data-lucide="car" class="w-5 h-5 text-blue-400" stroke-width="1.5"></i>
+                  Getting There
+                </h4>
+                <div class="grid gap-3">
+                  <div class="flex items-center gap-3 p-3 bg-white/5 rounded-lg">
+                    <i data-lucide="car" class="w-5 h-5 text-green-400" stroke-width="1.5"></i>
+                    <span class="text-white/80">Free parking available for all participants</span>
+                  </div>
+                  <div class="flex items-center gap-3 p-3 bg-white/5 rounded-lg">
+                    <i data-lucide="train" class="w-5 h-5 text-purple-400" stroke-width="1.5"></i>
+                    <span class="text-white/80">Metro Station: Sports Complex (Line 2)</span>
+                  </div>
+                  <div class="flex items-center gap-3 p-3 bg-white/5 rounded-lg">
+                    <i data-lucide="bus" class="w-5 h-5 text-orange-400" stroke-width="1.5"></i>
+                    <span class="text-white/80">Bus routes: 15, 23, 47 stop nearby</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Map Section -->
+          <div class="mt-12 pt-8 border-t border-white/10">
+            <h3 class="text-2xl font-light mb-6 text-white text-center flex items-center justify-center gap-3">
+              <i data-lucide="map" class="w-6 h-6 text-green-400" stroke-width="1.5"></i>
+              Interactive Map
+            </h3>
+            <div class="relative aspect-video rounded-2xl overflow-hidden bg-gradient-to-br from-green-600/20 to-blue-600/20 border border-white/10">
+              <img src="https://source.unsplash.com/1200x600/?map,stadium,aerial-view" alt="Olympic Sports Complex Map" class="w-full h-full object-cover progressive-image" loading="lazy">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/20"></div>
+              <div class="absolute inset-0 flex items-center justify-center">
+                <button class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg transition-colors focus-ring flex items-center gap-2 shadow-lg">
+                  <i data-lucide="external-link" class="w-5 h-5" stroke-width="1.5"></i>
+                  Open in Google Maps
+                </button>
+              </div>
+              <div class="absolute bottom-4 left-4 bg-black/60 backdrop-blur-sm rounded-lg p-3">
+                <p class="text-white font-medium">Olympic Sports Complex</p>
+                <p class="text-white/80 text-sm">123 Championship Drive, Sports City</p>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
     </div>
+
+    <!-- Floating Action Button -->
+    <button class="fab" onclick="scrollToRegistration()" title="Quick Register">
+      <i data-lucide="user-plus" class="w-6 h-6" stroke-width="1.5"></i>
+    </button>
 
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
     <script>
+      // Progressive Loading System
+      window.addEventListener('load', () => {
+        const loadingScreen = document.getElementById('loadingScreen');
+        
+        // Stage 1: Initialize progressive loading immediately
+        initializeProgressiveLoading();
+        
+        // Stage 2: Hide loading screen after core content is ready
+        setTimeout(() => {
+          loadingScreen.classList.add('fade-out');
+          
+          // Start loading heavy content
+          setTimeout(() => {
+            loadingScreen.style.display = 'none';
+            loadHeavyContent();
+          }, 500);
+        }, 1500); // Reduced from 2000ms to 1500ms
+      });
+      
+      // Initialize Progressive Loading
+      function initializeProgressiveLoading() {
+        // Stage 1: Show text content immediately
+        setTimeout(() => {
+          showContentByStage('stage-1');
+        }, 100);
+        
+        // Stage 2: Show navigation and basic structure
+        setTimeout(() => {
+          showContentByStage('stage-2');
+        }, 300);
+        
+        // Stage 3: Show main hero content
+        setTimeout(() => {
+          showContentByStage('stage-3');
+        }, 500);
+      }
+      
+      function showContentByStage(stageClass) {
+        const elements = document.querySelectorAll(`.${stageClass}`);
+        elements.forEach(element => {
+          element.classList.add('progressive-load', 'loaded');
+        });
+      }
+      
+      // Load Heavy Content (Images & 3D)
+      function loadHeavyContent() {
+        // Progressive image loading
+        loadImagesProgressively();
+        
+        // Load Spline background last
+        setTimeout(() => {
+          const splineContainer = document.querySelector('.spline-container');
+          if (splineContainer) {
+            splineContainer.classList.add('loaded');
+          }
+        }, 1000);
+      }
+      
+      // Progressive Image Loading
+      function loadImagesProgressively() {
+        const images = document.querySelectorAll('.progressive-image');
+        const imageObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const img = entry.target;
+              
+              // Create a new image to preload
+              const newImg = new Image();
+              newImg.onload = () => {
+                img.classList.add('loaded');
+                img.style.animation = 'none'; // Remove shimmer
+              };
+              
+              newImg.onerror = () => {
+                // Fallback: show placeholder or retry
+                img.classList.add('loaded');
+                img.style.animation = 'none';
+              };
+              
+              newImg.src = img.src;
+              imageObserver.unobserve(img);
+            }
+          });
+        }, {
+          rootMargin: '50px 0px', // Load images 50px before they come into view
+          threshold: 0.1
+        });
+        
+        images.forEach(img => {
+          img.classList.add('loading');
+          imageObserver.observe(img);
+        });
+      }
+      
+      // Content Section Reveal on Scroll
+      function setupContentReveal() {
+        const sections = document.querySelectorAll('section');
+        const sectionObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('content-section', 'visible');
+              sectionObserver.unobserve(entry.target);
+            }
+          });
+        }, {
+          rootMargin: '0px 0px -10% 0px',
+          threshold: 0.1
+        });
+        
+        sections.forEach(section => {
+          section.classList.add('content-section');
+          sectionObserver.observe(section);
+        });
+      }
+      
       document.addEventListener('DOMContentLoaded', () => {
         if (window.lucide) { lucide.createIcons(); }
+        
+        // Setup progressive loading systems
+        setupContentReveal();
+        
+        // Mobile optimizations
+        setupMobileOptimizations();
 
         // In-view observer (CSS-driven animations)
         const io = new IntersectionObserver((entries) => {
@@ -403,6 +1770,380 @@
               disableOnInteraction: false,
             },
           });
+        }
+        
+        // Team Swiper (Interactive Carousel)
+        if (window.Swiper) {
+          const teamSwiper = new Swiper(".team-swiper", {
+            grabCursor: true,
+            centeredSlides: false,
+            slidesPerView: "auto",
+            spaceBetween: 30,
+            loop: true,
+            speed: 600,
+            autoplay: {
+              delay: 4000,
+              disableOnInteraction: false,
+              pauseOnMouseEnter: true,
+            },
+            navigation: {
+              nextEl: '.team-next',
+              prevEl: '.team-prev',
+            },
+            breakpoints: {
+              320: {
+                slidesPerView: 1.2,
+                spaceBetween: 20,
+              },
+              768: {
+                slidesPerView: 2.5,
+                spaceBetween: 25,
+              },
+              1024: {
+                slidesPerView: 3.2,
+                spaceBetween: 30,
+              },
+              1280: {
+                slidesPerView: 4,
+                spaceBetween: 30,
+              },
+            },
+            // Mouse wheel control
+            mousewheel: {
+              forceToAxis: true,
+              sensitivity: 0.5,
+              releaseOnEdges: true,
+            },
+            // Keyboard control
+            keyboard: {
+              enabled: true,
+              onlyInViewport: true,
+            },
+            // Free mode for smooth dragging
+            freeMode: {
+              enabled: true,
+              sticky: true,
+              momentumRatio: 0.25,
+              momentumVelocityRatio: 0.25,
+            },
+          });
+          
+          // Custom speed control with mouse wheel
+          const teamSwiperEl = document.querySelector('.team-swiper');
+          if (teamSwiperEl) {
+            teamSwiperEl.addEventListener('wheel', (e) => {
+              if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
+                e.preventDefault();
+                if (e.deltaX > 0) {
+                  teamSwiper.slideNext(200);
+                } else {
+                  teamSwiper.slidePrev(200);
+                }
+              }
+            });
+          }
+        }
+
+        // Countdown Timer
+        const eventDate = new Date();
+        eventDate.setDate(eventDate.getDate() + 15); // Set event to 15 days from now
+        eventDate.setHours(10, 0, 0, 0); // Set event time to 10:00 AM
+        
+        function updateCountdown() {
+          const now = new Date().getTime();
+          const distance = eventDate.getTime() - now;
+          
+          if (distance > 0) {
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            // Update DOM elements with animation
+            const daysEl = document.getElementById('days');
+            const hoursEl = document.getElementById('hours');
+            const minutesEl = document.getElementById('minutes');
+            const secondsEl = document.getElementById('seconds');
+            
+            if (daysEl) {
+              if (daysEl.textContent != days) {
+                daysEl.style.transform = 'scale(1.2)';
+                setTimeout(() => { daysEl.style.transform = 'scale(1)'; }, 150);
+              }
+              daysEl.textContent = days.toString().padStart(2, '0');
+            }
+            
+            if (hoursEl) {
+              if (hoursEl.textContent != hours.toString().padStart(2, '0')) {
+                hoursEl.style.transform = 'scale(1.2)';
+                setTimeout(() => { hoursEl.style.transform = 'scale(1)'; }, 150);
+              }
+              hoursEl.textContent = hours.toString().padStart(2, '0');
+            }
+            
+            if (minutesEl) {
+              if (minutesEl.textContent != minutes.toString().padStart(2, '0')) {
+                minutesEl.style.transform = 'scale(1.2)';
+                setTimeout(() => { minutesEl.style.transform = 'scale(1)'; }, 150);
+              }
+              minutesEl.textContent = minutes.toString().padStart(2, '0');
+            }
+            
+            if (secondsEl) {
+              if (secondsEl.textContent != seconds.toString().padStart(2, '0')) {
+                secondsEl.style.transform = 'scale(1.2)';
+                setTimeout(() => { secondsEl.style.transform = 'scale(1)'; }, 150);
+              }
+              secondsEl.textContent = seconds.toString().padStart(2, '0');
+            }
+          } else {
+            // Event has started!
+            document.querySelector('h3').textContent = 'Event Started!';
+            document.getElementById('days').textContent = '00';
+            document.getElementById('hours').textContent = '00';
+            document.getElementById('minutes').textContent = '00';
+            document.getElementById('seconds').textContent = '00';
+          }
+        }
+        
+        // Update countdown immediately and then every second
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+        
+        // FAB scroll visibility and functionality
+        window.scrollToRegistration = function() {
+          document.getElementById('registration').scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        };
+        
+        // Show/hide FAB based on scroll position
+        const fab = document.querySelector('.fab');
+        const showFabAfter = 300; // Show FAB after scrolling 300px
+        
+        window.addEventListener('scroll', () => {
+          if (window.scrollY > showFabAfter) {
+            fab.style.opacity = '1';
+            fab.style.transform = 'scale(1)';
+            fab.style.pointerEvents = 'auto';
+          } else {
+            fab.style.opacity = '0';
+            fab.style.transform = 'scale(0.8)';
+            fab.style.pointerEvents = 'none';
+          }
+        });
+        
+        // Initialize FAB as hidden
+        fab.style.opacity = '0';
+        fab.style.transform = 'scale(0.8)';
+        fab.style.pointerEvents = 'none';
+        fab.style.transition = 'all 0.3s ease';
+        
+        // Mobile optimization function
+        function setupMobileOptimizations() {
+          // Detect mobile device
+          const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+          const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+          
+          if (isMobile || isTouch) {
+            // Add mobile class to body
+            document.body.classList.add('mobile-device');
+            
+            // Optimize touch interactions
+            setupTouchOptimizations();
+            
+            // Reduce animations for better performance
+            if (window.innerWidth < 768) {
+              reduceMobileAnimations();
+            }
+            
+            // Fix iOS viewport issues
+            if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
+              setupIOSOptimizations();
+            }
+            
+            // Android specific optimizations
+            if (/Android/.test(navigator.userAgent)) {
+              setupAndroidOptimizations();
+            }
+          }
+          
+          // Responsive image handling
+          setupResponsiveImages();
+          
+          // Touch gesture improvements
+          setupTouchGestures();
+          
+          // Performance monitoring
+          setupPerformanceOptimizations();
+        }
+        
+        function setupTouchOptimizations() {
+          // Improve touch targets
+          const touchTargets = document.querySelectorAll('button, .fab, .team-nav-btn, a');
+          touchTargets.forEach(target => {
+            target.style.minHeight = '44px';
+            target.style.minWidth = '44px';
+          });
+          
+          // Add touch feedback
+          const interactiveElements = document.querySelectorAll('.team-member, .fab, button');
+          interactiveElements.forEach(element => {
+            element.addEventListener('touchstart', function() {
+              this.classList.add('touch-active');
+            }, { passive: true });
+            
+            element.addEventListener('touchend', function() {
+              setTimeout(() => this.classList.remove('touch-active'), 150);
+            }, { passive: true });
+          });
+        }
+        
+        function reduceMobileAnimations() {
+          // Disable heavy animations on mobile
+          const style = document.createElement('style');
+          style.textContent = `
+            @media (max-width: 768px) {
+              .spline-container { display: none; }
+              .parallax-fixed { display: none; }
+              .team-member:hover { transform: none; }
+              .progressive-image { transition: opacity 0.3s ease; }
+            }
+          `;
+          document.head.appendChild(style);
+        }
+        
+        function setupIOSOptimizations() {
+          // Fix iOS Safari viewport height issues
+          const setViewHeight = () => {
+            const vh = window.innerHeight * 0.01;
+            document.documentElement.style.setProperty('--vh', vh + 'px');
+          };
+          
+          setViewHeight();
+          window.addEventListener('resize', setViewHeight);
+          window.addEventListener('orientationchange', () => {
+            setTimeout(setViewHeight, 500);
+          });
+          
+          // Fix iOS bounce scrolling
+          document.body.style.overscrollBehavior = 'none';
+          
+          // Prevent zoom on input focus
+          const inputs = document.querySelectorAll('input, textarea, select');
+          inputs.forEach(input => {
+            input.addEventListener('focus', function() {
+              this.style.fontSize = '16px';
+            });
+          });
+        }
+        
+        function setupAndroidOptimizations() {
+          // Android Chrome address bar handling
+          let ticking = false;
+          const updateHeight = () => {
+            const vh = window.innerHeight * 0.01;
+            document.documentElement.style.setProperty('--vh', vh + 'px');
+            ticking = false;
+          };
+          
+          const requestTick = () => {
+            if (!ticking) {
+              requestAnimationFrame(updateHeight);
+              ticking = true;
+            }
+          };
+          
+          window.addEventListener('resize', requestTick);
+        }
+        
+        function setupResponsiveImages() {
+          // Add loading="lazy" to images if not already present
+          const images = document.querySelectorAll('img:not([loading])');
+          images.forEach(img => {
+            img.loading = 'lazy';
+          });
+          
+          // Use appropriate image sizes based on screen
+          const updateImageSources = () => {
+            const images = document.querySelectorAll('img[src*="unsplash"]');
+            const screenWidth = window.innerWidth;
+            const pixelRatio = window.devicePixelRatio || 1;
+            
+            images.forEach(img => {
+              const baseUrl = img.src.split('?')[0];
+              let newSize;
+              
+              if (screenWidth < 480) {
+                newSize = Math.round(300 * pixelRatio);
+              } else if (screenWidth < 768) {
+                newSize = Math.round(400 * pixelRatio);
+              } else {
+                newSize = Math.round(600 * pixelRatio);
+              }
+              
+              // Only update if different
+              const currentSize = img.src.match(/\/(\d+)x/);
+              if (!currentSize || parseInt(currentSize[1]) !== newSize) {
+                const urlParts = img.src.split('/');
+                const dimensions = urlParts[urlParts.length - 1];
+                const newDimensions = dimensions.replace(/\d+x\d+/, newSize + 'x' + newSize);
+                urlParts[urlParts.length - 1] = newDimensions;
+                img.src = urlParts.join('/');
+              }
+            });
+          };
+          
+          // Update on load and orientation change
+          updateImageSources();
+          window.addEventListener('orientationchange', () => {
+            setTimeout(updateImageSources, 100);
+          });
+        }
+        
+        function setupTouchGestures() {
+          // Improve swiper touch response
+          const swipers = document.querySelectorAll('.swiper');
+          swipers.forEach(swiper => {
+            swiper.style.touchAction = 'pan-x pan-y';
+          });
+          
+          // Prevent accidental zoom on double tap
+          let lastTouchEnd = 0;
+          document.addEventListener('touchend', (e) => {
+            const now = (new Date()).getTime();
+            if (now - lastTouchEnd <= 300) {
+              e.preventDefault();
+            }
+            lastTouchEnd = now;
+          }, { passive: false });
+        }
+        
+        function setupPerformanceOptimizations() {
+          // Reduce animations based on performance
+          if (navigator.hardwareConcurrency && navigator.hardwareConcurrency < 4) {
+            document.body.classList.add('low-performance');
+          }
+          
+          // Monitor frame rate and adjust
+          let frames = 0;
+          let lastTime = performance.now();
+          
+          const checkFPS = (currentTime) => {
+            frames++;
+            if (currentTime - lastTime >= 1000) {
+              const fps = Math.round((frames * 1000) / (currentTime - lastTime));
+              if (fps < 30) {
+                document.body.classList.add('low-fps');
+              }
+              frames = 0;
+              lastTime = currentTime;
+            }
+            requestAnimationFrame(checkFPS);
+          };
+          
+          requestAnimationFrame(checkFPS);
         }
       });
     </script>
