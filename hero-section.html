@@ -875,6 +875,94 @@
         opacity: 1;
         transform: translateY(0);
       }
+
+      /* Gallery Animation Styles */
+      .gallery-section {
+        padding: 60px 20px;
+        overflow: hidden;
+      }
+
+      .gallery-section h2 {
+        text-align: center;
+        font-size: 2.5rem;
+        margin-bottom: 10px;
+        background: linear-gradient(90deg, hsl(220, 90%, 60%), hsl(280, 70%, 60%));
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: gradient-shift 5s infinite linear;
+        background-size: 300% 300%;
+      }
+
+      .gallery-section p {
+        text-align: center;
+        color: #aaa;
+        margin-bottom: 40px;
+      }
+
+      .gallery-row {
+        overflow-x: auto;
+        overflow-y: hidden;
+        cursor: grab;
+        user-select: none;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        margin-bottom: 1rem;
+      }
+
+      .gallery-row::-webkit-scrollbar {
+        display: none;
+      }
+
+      .scrolling {
+        display: inline-flex;
+        gap: 1rem;
+        animation-duration: 40s;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+      }
+
+      .scrolling img {
+        height: 200px;
+        border-radius: 12px;
+        object-fit: cover;
+        flex-shrink: 0;
+        pointer-events: none;
+        transition: transform 0.3s ease;
+      }
+
+      .scrolling img:hover {
+        transform: scale(1.05);
+      }
+
+      @keyframes scroll-left {
+        from { transform: translateX(0); }
+        to   { transform: translateX(-50%); }
+      }
+
+      @keyframes scroll-right {
+        from { transform: translateX(0); }
+        to   { transform: translateX(50%); }
+      }
+
+      .scroll-left {
+        animation-name: scroll-left;
+      }
+
+      .scroll-right {
+        animation-name: scroll-right;
+      }
+
+      @keyframes gradient-shift {
+        0% { background-position: 0% 50%; }
+        100% { background-position: 100% 50%; }
+      }
+
+      .space-y {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
     </style>
   </head>
   <body class="bg-black text-white antialiased selection:bg-white/20 scroll-smooth">
@@ -1261,26 +1349,63 @@
         </div>
       </section>
 
-      <!-- Masonry Gallery -->
-      <section id="gallery" class="container mx-auto px-6 mt-16 scroll-mt-24">
+      <!-- Championship Gallery -->
+      <section id="gallery" class="gallery-section container mx-auto px-6 mt-16 scroll-mt-24">
         <div class="max-w-6xl mx-auto glass rounded-2xl border border-white/10 ring-contrast p-8" data-animate="" style="--d:.14s;">
-          <h2 class="text-3xl tracking-tight font-light mb-6 title-gradient text-center">
-            Gallery &amp; Highlights
-          </h2>
+          <h2>Championship Moments</h2>
+          <p>Relive the intensity and passion of our greatest sporting events</p>
 
-          <div class="masonry">
-            <img src="https://source.unsplash.com/400x600/?sports" alt="Sports Highlight" class="progressive-image" loading="lazy">
-            <img src="https://source.unsplash.com/400x300/?football" alt="Football" class="progressive-image" loading="lazy">
-            <img src="https://source.unsplash.com/400x500/?basketball" alt="Basketball" class="progressive-image" loading="lazy">
-            <img src="https://source.unsplash.com/400x400/?stadium" alt="Stadium" class="progressive-image" loading="lazy">
-            <img src="https://source.unsplash.com/400x600/?crowd" alt="Crowd" class="progressive-image" loading="lazy">
-            <img src="https://source.unsplash.com/400x500/?athlete" alt="Athlete" class="progressive-image" loading="lazy">
-            <img src="https://source.unsplash.com/400x350/?running" alt="Running" class="progressive-image" loading="lazy">
-            <img src="https://source.unsplash.com/400x600/?team" alt="Team" class="progressive-image" loading="lazy">
-            <img src="https://source.unsplash.com/400x450/?tennis" alt="Tennis" class="progressive-image" loading="lazy">
-            <img src="https://source.unsplash.com/400x320/?swimming" alt="Swimming" class="progressive-image" loading="lazy">
-            <img src="https://source.unsplash.com/400x550/?volleyball" alt="Volleyball" class="progressive-image" loading="lazy">
-            <img src="https://source.unsplash.com/400x380/?soccer" alt="Soccer" class="progressive-image" loading="lazy">
+          <div class="space-y">
+            <!-- Row 1 -->
+            <div class="gallery-row">
+              <div class="scrolling scroll-left">
+                <img src="assests/gallery-1.jpg" alt="Championship moment 1">
+                <img src="assests/gallery-2.jpg" alt="Championship moment 2">
+                <img src="assests/gallery-3.jpg" alt="Championship moment 3">
+                <img src="assests/gallery-4.jpg" alt="Championship moment 4">
+                <img src="assests/gallery-5.jpg" alt="Championship moment 5">
+                <!-- duplicated for seamless loop -->
+                <img src="assests/gallery-1.jpg" alt="Championship moment 1">
+                <img src="assests/gallery-2.jpg" alt="Championship moment 2">
+                <img src="assests/gallery-3.jpg" alt="Championship moment 3">
+                <img src="assests/gallery-4.jpg" alt="Championship moment 4">
+                <img src="assests/gallery-5.jpg" alt="Championship moment 5">
+              </div>
+            </div>
+
+            <!-- Row 2 -->
+            <div class="gallery-row">
+              <div class="scrolling scroll-right">
+                <img src="assests/gallery-6.jpg" alt="Championship moment 6">
+                <img src="assests/gallery-7.jpg" alt="Championship moment 7">
+                <img src="assests/gallery-8.jpg" alt="Championship moment 8">
+                <img src="assests/gallery-9.jpg" alt="Championship moment 9">
+                <img src="assests/gallery-10.jpg" alt="Championship moment 10">
+                <!-- duplicated for seamless loop -->
+                <img src="assests/gallery-6.jpg" alt="Championship moment 6">
+                <img src="assests/gallery-7.jpg" alt="Championship moment 7">
+                <img src="assests/gallery-8.jpg" alt="Championship moment 8">
+                <img src="assests/gallery-9.jpg" alt="Championship moment 9">
+                <img src="assests/gallery-10.jpg" alt="Championship moment 10">
+              </div>
+            </div>
+
+            <!-- Row 3 -->
+            <div class="gallery-row">
+              <div class="scrolling scroll-left">
+                <img src="assests/gallery-3.jpg" alt="Championship moment 3">
+                <img src="assests/gallery-5.jpg" alt="Championship moment 5">
+                <img src="assests/gallery-7.jpg" alt="Championship moment 7">
+                <img src="assests/gallery-1.jpg" alt="Championship moment 1">
+                <img src="assests/gallery-9.jpg" alt="Championship moment 9">
+                <!-- duplicated for seamless loop -->
+                <img src="assests/gallery-3.jpg" alt="Championship moment 3">
+                <img src="assests/gallery-5.jpg" alt="Championship moment 5">
+                <img src="assests/gallery-7.jpg" alt="Championship moment 7">
+                <img src="assests/gallery-1.jpg" alt="Championship moment 1">
+                <img src="assests/gallery-9.jpg" alt="Championship moment 9">
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -1798,6 +1923,38 @@
             });
           }
         }
+
+        // Gallery drag-to-scroll functionality
+        document.querySelectorAll('.gallery-row').forEach(row => {
+          let isDown = false;
+          let startX;
+          let scrollLeft;
+
+          row.addEventListener('mousedown', e => {
+            isDown = true;
+            row.style.cursor = 'grabbing';
+            startX = e.pageX - row.offsetLeft;
+            scrollLeft = row.scrollLeft;
+          });
+
+          row.addEventListener('mouseleave', () => { 
+            isDown = false; 
+            row.style.cursor = 'grab';
+          });
+          
+          row.addEventListener('mouseup', () => { 
+            isDown = false; 
+            row.style.cursor = 'grab';
+          });
+
+          row.addEventListener('mousemove', e => {
+            if(!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - row.offsetLeft;
+            const walk = (x - startX) * 2;
+            row.scrollLeft = scrollLeft - walk;
+          });
+        });
 
         // Countdown Timer
         const eventDate = new Date();
