@@ -1193,6 +1193,150 @@
           color: #ffffff !important;
         }
       }
+      
+      /* Infinite Scroll Team Section Styles */
+      .team-marquee-card {
+        position: relative;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 1rem;
+        padding: 1.5rem;
+        transition: all 0.5s ease;
+        flex-shrink: 0;
+        width: 280px;
+      }
+
+      .team-marquee-card::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1));
+        border-radius: 1rem;
+        opacity: 0;
+        transition: opacity 0.5s ease;
+      }
+
+      .team-marquee-card:hover::before {
+        opacity: 1;
+      }
+
+      .team-marquee-card:hover {
+        transform: translateY(-8px);
+        border-color: rgba(255, 255, 255, 0.2);
+        box-shadow: 0 20px 40px rgba(59, 130, 246, 0.2);
+      }
+
+      .team-marquee-avatar {
+        width: 128px;
+        height: 128px;
+        border-radius: 9999px;
+        overflow: hidden;
+        border: 3px solid rgba(255, 255, 255, 0.2);
+        transition: all 0.5s ease;
+        position: relative;
+        margin: 0 auto 1rem;
+      }
+
+      .team-marquee-card:hover .team-marquee-avatar {
+        border-color: rgba(96, 165, 250, 0.6);
+        box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+      }
+
+      .team-marquee-avatar img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .team-marquee-name {
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        transition: color 0.3s ease;
+        text-align: center;
+      }
+
+      .team-marquee-card:hover .team-marquee-name {
+        color: rgb(96, 165, 250);
+      }
+
+      .team-marquee-role {
+        font-size: 0.875rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: rgba(255, 255, 255, 0.7);
+        margin-bottom: 1rem;
+        font-weight: 500;
+        text-align: center;
+      }
+
+      .team-social-links {
+        display: flex;
+        gap: 0.75rem;
+        justify-content: center;
+      }
+
+      .team-social-link {
+        width: 36px;
+        height: 36px;
+        border-radius: 9999px;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+        cursor: pointer;
+      }
+
+      .team-social-link:hover {
+        transform: scale(1.1);
+      }
+
+      .team-social-link.linkedin:hover {
+        background: #0077b5;
+        border-color: #0077b5;
+      }
+
+      .team-social-link.twitter:hover {
+        background: #1da1f2;
+        border-color: #1da1f2;
+      }
+
+      .team-social-link.email:hover {
+        background: #9333ea;
+        border-color: #9333ea;
+      }
+
+      .team-marquee-container {
+        display: flex;
+        gap: 1.5rem;
+        overflow-x: auto;
+        cursor: grab;
+        user-select: none;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+      }
+
+      .team-marquee-container::-webkit-scrollbar {
+        display: none;
+      }
+
+      .team-marquee-container:active {
+        cursor: grabbing;
+      }
+
+      @media (max-width: 768px) {
+        .team-marquee-card {
+          width: 240px;
+        }
+        
+        .team-marquee-avatar {
+          width: 100px;
+          height: 100px;
+        }
+      }
     </style>
   </head>
   <body class="bg-black text-white antialiased selection:bg-white/20 scroll-smooth">
@@ -1646,115 +1790,22 @@
         </div>
       </section>
 
-      <!-- Team / Organizers -->
+      <!-- Team / Organizers - Infinite Scroll -->
       <section id="team" class="container mx-auto px-6 mt-16 scroll-mt-24">
         <div class="max-w-6xl mx-auto glass rounded-2xl border border-white/10 ring-contrast p-8" data-animate="" style="--d:.16s;">
-          <h2 class="text-3xl tracking-tight font-light mb-2 title-gradient text-center">Team &amp; Organizers</h2>
-          <p class="text-center text-white/70 max-w-2xl mx-auto mb-6">Drag or swipe to meet our dedicated team working behind the scenes</p>
-          
-          <div class="swiper team-swiper">
-            <div class="swiper-wrapper">
-              <!-- Jane Doe -->
-              <div class="swiper-slide">
-                <div class="team-member">
-                  <img src="https://source.unsplash.com/200x200/?businesswoman" alt="Jane Doe" class="progressive-image" loading="lazy">
-                  <h3>Jane Doe</h3>
-                  <p>Event Director</p>
-                  <div class="role-badge">Leadership</div>
-                </div>
-              </div>
-              <!-- John Smith -->
-              <div class="swiper-slide">
-                <div class="team-member">
-                  <img src="https://source.unsplash.com/200x200/?businessman" alt="John Smith" class="progressive-image" loading="lazy">
-                  <h3>John Smith</h3>
-                  <p>Sports Coordinator</p>
-                  <div class="role-badge">Operations</div>
-                </div>
-              </div>
-              <!-- Alex Kim -->
-              <div class="swiper-slide">
-                <div class="team-member">
-                  <img src="https://source.unsplash.com/200x200/?professional-woman" alt="Alex Kim" class="progressive-image" loading="lazy">
-                  <h3>Alex Kim</h3>
-                  <p>Sponsorship Manager</p>
-                  <div class="role-badge">Partnerships</div>
-                </div>
-              </div>
-              <!-- Mike Johnson -->
-              <div class="swiper-slide">
-                <div class="team-member">
-                  <img src="https://source.unsplash.com/200x200/?coach" alt="Mike Johnson" class="progressive-image" loading="lazy">
-                  <h3>Mike Johnson</h3>
-                  <p>Head Coach</p>
-                  <div class="role-badge">Training</div>
-                </div>
-              </div>
-              <!-- Sarah Wilson -->
-              <div class="swiper-slide">
-                <div class="team-member">
-                  <img src="https://source.unsplash.com/200x200/?referee" alt="Sarah Wilson" class="progressive-image" loading="lazy">
-                  <h3>Sarah Wilson</h3>
-                  <p>Chief Referee</p>
-                  <div class="role-badge">Officiating</div>
-                </div>
-              </div>
-              <!-- Dr. Brown -->
-              <div class="swiper-slide">
-                <div class="team-member">
-                  <img src="https://source.unsplash.com/200x200/?medical-staff" alt="Dr. Brown" class="progressive-image" loading="lazy">
-                  <h3>Dr. Brown</h3>
-                  <p>Medical Officer</p>
-                  <div class="role-badge">Health & Safety</div>
-                </div>
-              </div>
-              <!-- Lisa Chen -->
-              <div class="swiper-slide">
-                <div class="team-member">
-                  <img src="https://source.unsplash.com/200x200/?photographer" alt="Lisa Chen" class="progressive-image" loading="lazy">
-                  <h3>Lisa Chen</h3>
-                  <p>Media Manager</p>
-                  <div class="role-badge">Communications</div>
-                </div>
-              </div>
-              <!-- Tom Davis -->
-              <div class="swiper-slide">
-                <div class="team-member">
-                  <img src="https://source.unsplash.com/200x200/?security" alt="Tom Davis" class="progressive-image" loading="lazy">
-                  <h3>Tom Davis</h3>
-                  <p>Security Head</p>
-                  <div class="role-badge">Security</div>
-                </div>
-              </div>
-              <!-- Emma Rodriguez -->
-              <div class="swiper-slide">
-                <div class="team-member">
-                  <img src="https://source.unsplash.com/200x200/?volunteer-coordinator" alt="Emma Rodriguez" class="progressive-image" loading="lazy">
-                  <h3>Emma Rodriguez</h3>
-                  <p>Volunteer Coordinator</p>
-                  <div class="role-badge">Community</div>
-                </div>
-              </div>
-              <!-- David Park -->
-              <div class="swiper-slide">
-                <div class="team-member">
-                  <img src="https://source.unsplash.com/200x200/?tech-specialist" alt="David Park" class="progressive-image" loading="lazy">
-                  <h3>David Park</h3>
-                  <p>Tech Specialist</p>
-                  <div class="role-badge">Technology</div>
-                </div>
-              </div>
-            </div>
+          <!-- Header -->
+          <div style="text-align: center; margin-bottom: 3rem;">
+            <h2 class="text-3xl tracking-tight font-light mb-2 title-gradient text-center">Team &amp; Organizers</h2>
+            <p class="text-center text-white/70 max-w-2xl mx-auto">Meet our dedicated team working behind the scenes</p>
           </div>
-          
-          <!-- Navigation buttons -->
-          <div class="team-navigation">
-            <div class="team-nav-btn team-prev">
-              <i data-lucide="chevron-left" class="w-5 h-5" stroke-width="2"></i>
-            </div>
-            <div class="team-nav-btn team-next">
-              <i data-lucide="chevron-right" class="w-5 h-5" stroke-width="2"></i>
-            </div>
+
+          <!-- Team Marquee Section -->
+          <div style="display: flex; flex-direction: column; gap: 2rem;">
+            <!-- Row 1 - Scroll Right -->
+            <div id="team-marquee-1" class="team-marquee-container"></div>
+
+            <!-- Row 2 - Scroll Left -->
+            <div id="team-marquee-2" class="team-marquee-container"></div>
           </div>
         </div>
       </section>
@@ -2088,77 +2139,256 @@
           });
         }
         
-        // Team Swiper (Interactive Carousel)
-        if (window.Swiper) {
-          const teamSwiper = new Swiper(".team-swiper", {
-            grabCursor: true,
-            centeredSlides: false,
-            slidesPerView: "auto",
-            spaceBetween: 30,
-            loop: true,
-            speed: 600,
-            autoplay: {
-              delay: 4000,
-              disableOnInteraction: false,
-              pauseOnMouseEnter: true,
-            },
-            navigation: {
-              nextEl: '.team-next',
-              prevEl: '.team-prev',
-            },
-            breakpoints: {
-              320: {
-                slidesPerView: 1.2,
-                spaceBetween: 20,
-              },
-              768: {
-                slidesPerView: 2.5,
-                spaceBetween: 25,
-              },
-              1024: {
-                slidesPerView: 3.2,
-                spaceBetween: 30,
-              },
-              1280: {
-                slidesPerView: 4,
-                spaceBetween: 30,
-              },
-            },
-            // Mouse wheel control
-            mousewheel: {
-              forceToAxis: true,
-              sensitivity: 0.5,
-              releaseOnEdges: true,
-            },
-            // Keyboard control
-            keyboard: {
-              enabled: true,
-              onlyInViewport: true,
-            },
-            // Free mode for smooth dragging
-            freeMode: {
-              enabled: true,
-              sticky: true,
-              momentumRatio: 0.25,
-              momentumVelocityRatio: 0.25,
-            },
+        // Infinite Scroll Team Section
+        const teamMembers = [
+          {
+            id: 1,
+            name: "Jane Doe",
+            role: "Event Director",
+            image: "https://images.pexels.com/photos/2182970/pexels-photo-2182970.jpeg?auto=compress&cs=tinysrgb&w=400",
+            linkedin: "#",
+            twitter: "#",
+            email: "jane@sportsclub.com"
+          },
+          {
+            id: 2,
+            name: "John Smith",
+            role: "Sports Coordinator",
+            image: "https://images.pexels.com/photos/3756679/pexels-photo-3756679.jpeg?auto=compress&cs=tinysrgb&w=400",
+            linkedin: "#",
+            twitter: "#",
+            email: "john@sportsclub.com"
+          },
+          {
+            id: 3,
+            name: "Alex Kim",
+            role: "Sponsorship Manager",
+            image: "https://images.pexels.com/photos/3785079/pexels-photo-3785079.jpeg?auto=compress&cs=tinysrgb&w=400",
+            linkedin: "#",
+            twitter: "#",
+            email: "alex@sportsclub.com"
+          },
+          {
+            id: 4,
+            name: "Mike Johnson",
+            role: "Head Coach",
+            image: "https://images.pexels.com/photos/3763188/pexels-photo-3763188.jpeg?auto=compress&cs=tinysrgb&w=400",
+            linkedin: "#",
+            twitter: "#",
+            email: "mike@sportsclub.com"
+          },
+          {
+            id: 5,
+            name: "Sarah Wilson",
+            role: "Chief Referee",
+            image: "https://images.pexels.com/photos/3756523/pexels-photo-3756523.jpeg?auto=compress&cs=tinysrgb&w=400",
+            linkedin: "#",
+            twitter: "#",
+            email: "sarah@sportsclub.com"
+          },
+          {
+            id: 6,
+            name: "Dr. Brown",
+            role: "Medical Officer",
+            image: "https://images.pexels.com/photos/3777943/pexels-photo-3777943.jpeg?auto=compress&cs=tinysrgb&w=400",
+            linkedin: "#",
+            twitter: "#",
+            email: "brown@sportsclub.com"
+          },
+          {
+            id: 7,
+            name: "Lisa Chen",
+            role: "Media Manager",
+            image: "https://images.pexels.com/photos/3781538/pexels-photo-3781538.jpeg?auto=compress&cs=tinysrgb&w=400",
+            linkedin: "#",
+            twitter: "#",
+            email: "lisa@sportsclub.com"
+          },
+          {
+            id: 8,
+            name: "Tom Davis",
+            role: "Security Head",
+            image: "https://images.pexels.com/photos/3785077/pexels-photo-3785077.jpeg?auto=compress&cs=tinysrgb&w=400",
+            linkedin: "#",
+            twitter: "#",
+            email: "tom@sportsclub.com"
+          }
+        ];
+
+        // Create team card HTML
+        function createTeamCard(member) {
+          return `
+            <div class="team-marquee-card">
+              <div style="position: relative; z-index: 10;">
+                <div class="team-marquee-avatar">
+                  <img src="${member.image}" alt="${member.name}" loading="lazy">
+                </div>
+                <h3 class="team-marquee-name">${member.name}</h3>
+                <p class="team-marquee-role">${member.role}</p>
+                <div class="team-social-links">
+                  <a href="${member.linkedin}" class="team-social-link linkedin" onclick="return false;">
+                    <svg style="width: 18px; height: 18px; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; fill: none;" viewBox="0 0 24 24">
+                      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                      <rect x="2" y="9" width="4" height="12"></rect>
+                      <circle cx="4" cy="4" r="2"></circle>
+                    </svg>
+                  </a>
+                  <a href="${member.twitter}" class="team-social-link twitter" onclick="return false;">
+                    <svg style="width: 18px; height: 18px; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; fill: none;" viewBox="0 0 24 24">
+                      <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
+                    </svg>
+                  </a>
+                  <a href="mailto:${member.email}" class="team-social-link email">
+                    <svg style="width: 18px; height: 18px; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; fill: none;" viewBox="0 0 24 24">
+                      <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                      <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          `;
+        }
+
+        // Split team into two rows
+        const midpoint = Math.ceil(teamMembers.length / 2);
+        const row1Members = teamMembers.slice(0, midpoint);
+        const row2Members = teamMembers.slice(midpoint);
+
+        // Initialize marquee rows
+        function initializeTeamMarquee(containerId, members, direction) {
+          const container = document.getElementById(containerId);
+          if (!container) return;
+
+          // Duplicate members 3 times for seamless loop
+          const allMembers = [...members, ...members, ...members];
+
+          // Render cards
+          container.innerHTML = allMembers.map(member => createTeamCard(member)).join('');
+
+          // Drag/Touch to scroll functionality
+          let isDragging = false;
+          let startX = 0;
+          let scrollLeft = 0;
+          let isAutoScrollPaused = false;
+          let velocity = 0;
+          let momentumID;
+
+          // Mouse events
+          container.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            isAutoScrollPaused = true;
+            startX = e.pageX - container.offsetLeft;
+            scrollLeft = container.scrollLeft;
+            velocity = 0;
+            cancelMomentumTracking();
           });
-          
-          // Custom speed control with mouse wheel
-          const teamSwiperEl = document.querySelector('.team-swiper');
-          if (teamSwiperEl) {
-            teamSwiperEl.addEventListener('wheel', (e) => {
-              if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
-                e.preventDefault();
-                if (e.deltaX > 0) {
-                  teamSwiper.slideNext(200);
-                } else {
-                  teamSwiper.slidePrev(200);
+
+          container.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            e.preventDefault();
+            const x = e.pageX - container.offsetLeft;
+            const walk = (x - startX) * 2;
+            const prevScrollLeft = container.scrollLeft;
+            container.scrollLeft = scrollLeft - walk;
+            velocity = container.scrollLeft - prevScrollLeft;
+          });
+
+          container.addEventListener('mouseup', () => {
+            isDragging = false;
+            beginMomentumTracking();
+            setTimeout(() => { isAutoScrollPaused = false; }, 300);
+          });
+
+          container.addEventListener('mouseleave', () => {
+            if (isDragging) {
+              isDragging = false;
+              beginMomentumTracking();
+              setTimeout(() => { isAutoScrollPaused = false; }, 300);
+            }
+          });
+
+          // Touch events for mobile - improved for smoothness
+          let touchStartX = 0;
+          let touchScrollLeft = 0;
+          let lastTouchX = 0;
+          let touchVelocity = 0;
+
+          container.addEventListener('touchstart', (e) => {
+            isAutoScrollPaused = true;
+            touchStartX = e.touches[0].pageX;
+            lastTouchX = touchStartX;
+            touchScrollLeft = container.scrollLeft;
+            touchVelocity = 0;
+            cancelMomentumTracking();
+          }, { passive: true });
+
+          container.addEventListener('touchmove', (e) => {
+            const touchX = e.touches[0].pageX;
+            const walk = (touchX - touchStartX) * 1.5;
+            const prevScrollLeft = container.scrollLeft;
+            container.scrollLeft = touchScrollLeft - walk;
+            touchVelocity = touchX - lastTouchX;
+            lastTouchX = touchX;
+          }, { passive: true });
+
+          container.addEventListener('touchend', () => {
+            beginMomentumTracking();
+            setTimeout(() => { isAutoScrollPaused = false; }, 500);
+          }, { passive: true });
+
+          // Momentum tracking
+          function beginMomentumTracking() {
+            cancelMomentumTracking();
+            momentumID = requestAnimationFrame(momentumLoop);
+          }
+
+          function cancelMomentumTracking() {
+            if (momentumID) {
+              cancelAnimationFrame(momentumID);
+            }
+          }
+
+          function momentumLoop() {
+            const currentVelocity = velocity || touchVelocity;
+            if (Math.abs(currentVelocity) > 0.5) {
+              container.scrollLeft -= currentVelocity;
+              velocity *= 0.95;
+              touchVelocity *= 0.95;
+              momentumID = requestAnimationFrame(momentumLoop);
+            }
+          }
+
+          // Auto-scroll animation
+          let scrollPosition = direction === 'left' ? 0 : container.scrollWidth / 2;
+
+          function animate() {
+            if (!isDragging && !isAutoScrollPaused) {
+              if (direction === 'left') {
+                scrollPosition += 0.5;
+                if (scrollPosition >= container.scrollWidth / 2) {
+                  scrollPosition = 0;
+                }
+              } else {
+                scrollPosition -= 0.5;
+                if (scrollPosition <= 0) {
+                  scrollPosition = container.scrollWidth / 2;
                 }
               }
-            });
+              container.scrollLeft = scrollPosition;
+            } else if (!isDragging) {
+              // Sync scrollPosition with manual scroll position
+              scrollPosition = container.scrollLeft;
+            }
+            requestAnimationFrame(animate);
           }
+
+          requestAnimationFrame(animate);
         }
+
+        // Initialize both rows
+        initializeTeamMarquee('team-marquee-1', row1Members, 'right');
+        initializeTeamMarquee('team-marquee-2', row2Members, 'left');
 
         // Gallery drag-to-scroll functionality
         document.querySelectorAll('.gallery-row').forEach(row => {
