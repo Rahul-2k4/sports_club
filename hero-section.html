@@ -963,6 +963,236 @@
         flex-direction: column;
         gap: 1rem;
       }
+
+      /* Navigation Gradient Trail Effect */
+      .nav-container {
+        position: relative;
+      }
+
+      .nav-trail {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 0;
+        background: linear-gradient(90deg, 
+          rgba(147, 51, 234, 0.8), 
+          rgba(168, 85, 247, 0.9), 
+          rgba(192, 132, 252, 0.8),
+          rgba(147, 51, 234, 0.6)
+        );
+        background-size: 200% 100%;
+        border-radius: 8px;
+        opacity: 0;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        pointer-events: none;
+        z-index: -1;
+        animation: gradientShift 3s ease-in-out infinite;
+        filter: blur(1px);
+      }
+
+      .nav-trail.active {
+        opacity: 1;
+        filter: blur(0.5px);
+      }
+
+      .nav-link {
+        position: relative;
+        padding: 8px 16px;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+        z-index: 1;
+      }
+
+      .nav-link:hover {
+        color: #ffffff !important;
+        text-shadow: 0 0 20px rgba(168, 85, 247, 0.6);
+        transform: translateY(-1px);
+      }
+
+      @keyframes gradientShift {
+        0%, 100% { 
+          background-position: 0% 50%; 
+          transform: scaleX(1);
+        }
+        50% { 
+          background-position: 100% 50%; 
+          transform: scaleX(1.05);
+        }
+      }
+
+      /* Enhanced hover states for navigation */
+      .nav-links-container {
+        position: relative;
+        padding: 4px;
+        border-radius: 12px;
+      }
+
+      .nav-links-container::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(45deg, 
+          transparent 30%, 
+          rgba(147, 51, 234, 0.1) 50%, 
+          transparent 70%
+        );
+        border-radius: 12px;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .nav-links-container:hover::before {
+        opacity: 1;
+      }
+
+      /* Mobile Navigation Trail Effect */
+      .mobile-nav-container {
+        position: relative;
+        overflow-x: auto;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+      }
+
+      .mobile-nav-container::-webkit-scrollbar {
+        display: none;
+      }
+
+      .mobile-nav-trail {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        height: 80%;
+        width: 0;
+        background: linear-gradient(90deg, 
+          rgba(147, 51, 234, 0.7), 
+          rgba(168, 85, 247, 0.8), 
+          rgba(192, 132, 252, 0.7)
+        );
+        border-radius: 8px;
+        opacity: 0;
+        transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        pointer-events: none;
+        z-index: 0;
+        transform: translateY(-50%);
+      }
+
+      .mobile-nav-trail.active {
+        opacity: 1;
+      }
+
+      .mobile-nav-link {
+        position: relative;
+        z-index: 1;
+        transition: all 0.3s ease;
+      }
+
+      .mobile-nav-link:hover,
+      .mobile-nav-link:active,
+      .mobile-nav-link:focus {
+        color: #ffffff !important;
+        background: rgba(147, 51, 234, 0.2) !important;
+        border-color: rgba(168, 85, 247, 0.4) !important;
+        transform: scale(1.05);
+        text-shadow: 0 0 10px rgba(168, 85, 247, 0.5);
+      }
+
+      /* Register Now Button Color Changing Effect */
+      .register-btn {
+        background: linear-gradient(45deg, 
+          #ffffff, 
+          #f8fafc, 
+          #ffffff
+        );
+        background-size: 300% 300%;
+        position: relative;
+        overflow: hidden;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        border: 2px solid transparent;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .register-btn::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, 
+          transparent,
+          rgba(147, 51, 234, 0.8),
+          rgba(168, 85, 247, 0.9),
+          rgba(192, 132, 252, 0.8),
+          rgba(139, 92, 246, 0.7),
+          transparent
+        );
+        transition: left 0.6s ease;
+        z-index: -1;
+      }
+
+      .register-btn:hover {
+        background: linear-gradient(45deg, 
+          rgba(147, 51, 234, 0.9), 
+          rgba(168, 85, 247, 1), 
+          rgba(192, 132, 252, 0.9),
+          rgba(139, 92, 246, 0.8)
+        );
+        background-size: 400% 400%;
+        animation: gradientWave 2s ease-in-out infinite;
+        color: #ffffff !important;
+        border-color: rgba(168, 85, 247, 0.6);
+        box-shadow: 
+          0 8px 25px rgba(147, 51, 234, 0.4),
+          0 0 20px rgba(168, 85, 247, 0.3),
+          inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        transform: translateY(-2px) scale(1.05);
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+      }
+
+      .register-btn:hover::before {
+        left: 100%;
+      }
+
+      .register-btn:active {
+        transform: translateY(0) scale(1.02);
+        box-shadow: 
+          0 4px 15px rgba(147, 51, 234, 0.6),
+          inset 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      @keyframes gradientWave {
+        0%, 100% { 
+          background-position: 0% 50%; 
+        }
+        25% { 
+          background-position: 100% 0%; 
+        }
+        50% { 
+          background-position: 100% 100%; 
+        }
+        75% { 
+          background-position: 0% 100%; 
+        }
+      }
+
+      /* Touch device optimizations */
+      @media (hover: none) and (pointer: coarse) {
+        .mobile-nav-link:active {
+          background: rgba(147, 51, 234, 0.3) !important;
+          border-color: rgba(168, 85, 247, 0.5) !important;
+          transform: scale(1.02);
+        }
+
+        .register-btn:active {
+          background: linear-gradient(45deg, 
+            rgba(147, 51, 234, 0.9), 
+            rgba(168, 85, 247, 1), 
+            rgba(192, 132, 252, 0.9)
+          );
+          color: #ffffff !important;
+        }
+      }
     </style>
   </head>
   <body class="bg-black text-white antialiased selection:bg-white/20 scroll-smooth">
@@ -1010,19 +1240,22 @@
             </div>
             <span class="ml-3 text-xl tracking-tight sf-pro-display">Axiom Docs</span>
           </div>
-          <div class="hidden md:flex space-x-6 text-sm text-gray-300">
-            <a href="#about" class="hover:text-white transition-colors">About</a>
-            <a href="#sports" class="hover:text-white transition-colors">Sports</a>
-            <a href="#venue" class="hover:text-white transition-colors">Venue</a>
-            <a href="#brochure" class="hover:text-white transition-colors">Brochure</a>
-            <a href="#rules" class="hover:text-white transition-colors">Rules</a>
-            <a href="#registration" class="hover:text-white transition-colors">Registration</a>
-            <a href="#gallery" class="hover:text-white transition-colors">Gallery</a>
-            <a href="#team" class="hover:text-white transition-colors">Team</a>
-            <a href="#contact" class="hover:text-white transition-colors">Contact</a>
+          <div class="hidden md:flex space-x-1 text-sm text-gray-300 nav-container">
+            <div class="nav-trail" id="navTrail"></div>
+            <div class="nav-links-container flex space-x-1">
+              <a href="#about" class="nav-link hover:text-white transition-colors">About</a>
+              <a href="#sports" class="nav-link hover:text-white transition-colors">Sports</a>
+              <a href="#venue" class="nav-link hover:text-white transition-colors">Venue</a>
+              <a href="#brochure" class="nav-link hover:text-white transition-colors">Brochure</a>
+              <a href="#rules" class="nav-link hover:text-white transition-colors">Rules</a>
+              <a href="#registration" class="nav-link hover:text-white transition-colors">Registration</a>
+              <a href="#gallery" class="nav-link hover:text-white transition-colors">Gallery</a>
+              <a href="#team" class="nav-link hover:text-white transition-colors">Team</a>
+              <a href="#contact" class="nav-link hover:text-white transition-colors">Contact</a>
+            </div>
           </div>
           <div class="flex items-center gap-2">
-            <button class="bg-white text-black font-medium rounded-md px-6 py-2 hover:bg-opacity-90 transition-all focus-ring">
+            <button class="register-btn bg-white text-black font-medium rounded-md px-6 py-2 hover:bg-opacity-90 transition-all focus-ring">
               Register Now
             </button>
           </div>
@@ -1030,16 +1263,19 @@
 
         <!-- Mobile section nav -->
         <div class="mt-3 md:hidden">
-          <div class="flex items-center gap-2 overflow-x-auto no-scrollbar whitespace-nowrap px-1">
-            <a href="#about" class="px-3 py-1.5 text-xs rounded-lg bg-white/5 border border-white/10 hover:border-white/20 hover:bg-white/10 transition">About</a>
-            <a href="#sports" class="px-3 py-1.5 text-xs rounded-lg bg-white/5 border border-white/10 hover:border-white/20 hover:bg-white/10 transition">Sports</a>
-            <a href="#venue" class="px-3 py-1.5 text-xs rounded-lg bg-white/5 border border-white/10 hover:border-white/20 hover:bg-white/10 transition">Venue</a>
-            <a href="#brochure" class="px-3 py-1.5 text-xs rounded-lg bg-white/5 border border-white/10 hover:border-white/20 hover:bg-white/10 transition">Brochure</a>
-            <a href="#rules" class="px-3 py-1.5 text-xs rounded-lg bg-white/5 border border-white/10 hover:border-white/20 hover:bg-white/10 transition">Rules</a>
-            <a href="#registration" class="px-3 py-1.5 text-xs rounded-lg bg-white/5 border border-white/10 hover:border-white/20 hover:bg-white/10 transition">Registration</a>
-            <a href="#gallery" class="px-3 py-1.5 text-xs rounded-lg bg-white/5 border border-white/10 hover:border-white/20 hover:bg-white/10 transition">Gallery</a>
-            <a href="#team" class="px-3 py-1.5 text-xs rounded-lg bg-white/5 border border-white/10 hover:border-white/20 hover:bg-white/10 transition">Team</a>
-            <a href="#contact" class="px-3 py-1.5 text-xs rounded-lg bg-white/5 border border-white/10 hover:border-white/20 hover:bg-white/10 transition">Contact</a>
+          <div class="mobile-nav-container relative">
+            <div class="mobile-nav-trail" id="mobileNavTrail"></div>
+            <div class="flex items-center gap-2 overflow-x-auto no-scrollbar whitespace-nowrap px-1">
+              <a href="#about" class="mobile-nav-link px-3 py-1.5 text-xs rounded-lg bg-white/5 border border-white/10 hover:border-white/20 hover:bg-white/10 transition">About</a>
+              <a href="#sports" class="mobile-nav-link px-3 py-1.5 text-xs rounded-lg bg-white/5 border border-white/10 hover:border-white/20 hover:bg-white/10 transition">Sports</a>
+              <a href="#venue" class="mobile-nav-link px-3 py-1.5 text-xs rounded-lg bg-white/5 border border-white/10 hover:border-white/20 hover:bg-white/10 transition">Venue</a>
+              <a href="#brochure" class="mobile-nav-link px-3 py-1.5 text-xs rounded-lg bg-white/5 border border-white/10 hover:border-white/20 hover:bg-white/10 transition">Brochure</a>
+              <a href="#rules" class="mobile-nav-link px-3 py-1.5 text-xs rounded-lg bg-white/5 border border-white/10 hover:border-white/20 hover:bg-white/10 transition">Rules</a>
+              <a href="#registration" class="mobile-nav-link px-3 py-1.5 text-xs rounded-lg bg-white/5 border border-white/10 hover:border-white/20 hover:bg-white/10 transition">Registration</a>
+              <a href="#gallery" class="mobile-nav-link px-3 py-1.5 text-xs rounded-lg bg-white/5 border border-white/10 hover:border-white/20 hover:bg-white/10 transition">Gallery</a>
+              <a href="#team" class="mobile-nav-link px-3 py-1.5 text-xs rounded-lg bg-white/5 border border-white/10 hover:border-white/20 hover:bg-white/10 transition">Team</a>
+              <a href="#contact" class="mobile-nav-link px-3 py-1.5 text-xs rounded-lg bg-white/5 border border-white/10 hover:border-white/20 hover:bg-white/10 transition">Contact</a>
+            </div>
           </div>
         </div>
       </nav>
@@ -1955,6 +2191,228 @@
             row.scrollLeft = scrollLeft - walk;
           });
         });
+
+        // Navigation Trail Effect
+        const navTrail = document.getElementById('navTrail');
+        const navLinks = document.querySelectorAll('.nav-link');
+        const navContainer = document.querySelector('.nav-container');
+
+        if (navTrail && navLinks.length > 0 && navContainer) {
+          let currentActiveLink = null;
+          
+          navLinks.forEach(link => {
+            link.addEventListener('mouseenter', (e) => {
+              const linkRect = link.getBoundingClientRect();
+              const containerRect = navContainer.getBoundingClientRect();
+              
+              const leftOffset = linkRect.left - containerRect.left;
+              const linkWidth = linkRect.width;
+              
+              navTrail.style.left = leftOffset + 'px';
+              navTrail.style.width = linkWidth + 'px';
+              navTrail.classList.add('active');
+              
+              currentActiveLink = link;
+              
+              // Add a subtle scale animation to the hovered link
+              link.style.transform = 'translateY(-2px) scale(1.05)';
+            });
+            
+            link.addEventListener('mouseleave', () => {
+              link.style.transform = 'translateY(0) scale(1)';
+            });
+          });
+          
+          // Hide trail when mouse leaves navigation area
+          navContainer.addEventListener('mouseleave', () => {
+            navTrail.classList.remove('active');
+            navTrail.style.width = '0px';
+            currentActiveLink = null;
+            
+            // Reset all link transforms
+            navLinks.forEach(link => {
+              link.style.transform = 'translateY(0) scale(1)';
+            });
+          });
+          
+          // Smooth trail movement between links
+          navContainer.addEventListener('mousemove', (e) => {
+            if (currentActiveLink) {
+              const containerRect = navContainer.getBoundingClientRect();
+              const mouseX = e.clientX - containerRect.left;
+              
+              // Find the closest link to cursor
+              let closestLink = currentActiveLink;
+              let closestDistance = Infinity;
+              
+              navLinks.forEach(link => {
+                const linkRect = link.getBoundingClientRect();
+                const linkCenter = linkRect.left - containerRect.left + linkRect.width / 2;
+                const distance = Math.abs(mouseX - linkCenter);
+                
+                if (distance < closestDistance) {
+                  closestDistance = distance;
+                  closestLink = link;
+                }
+              });
+              
+              if (closestLink !== currentActiveLink) {
+                // Smoothly transition to new link
+                const linkRect = closestLink.getBoundingClientRect();
+                const leftOffset = linkRect.left - containerRect.left;
+                const linkWidth = linkRect.width;
+                
+                navTrail.style.left = leftOffset + 'px';
+                navTrail.style.width = linkWidth + 'px';
+                
+                // Reset previous link
+                if (currentActiveLink) {
+                  currentActiveLink.style.transform = 'translateY(0) scale(1)';
+                }
+                
+                // Animate new link
+                closestLink.style.transform = 'translateY(-2px) scale(1.05)';
+                currentActiveLink = closestLink;
+              }
+            }
+          });
+        }
+
+        // Mobile Navigation Trail Effect
+        const mobileNavTrail = document.getElementById('mobileNavTrail');
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+        const mobileNavContainer = document.querySelector('.mobile-nav-container');
+
+        if (mobileNavTrail && mobileNavLinks.length > 0 && mobileNavContainer) {
+          let mobileActiveLink = null;
+          
+          mobileNavLinks.forEach(link => {
+            // Mouse events for devices that support hover
+            link.addEventListener('mouseenter', (e) => {
+              updateMobileTrail(link);
+            });
+            
+            // Touch events for mobile devices
+            link.addEventListener('touchstart', (e) => {
+              updateMobileTrail(link);
+              // Add haptic feedback if available
+              if (navigator.vibrate) {
+                navigator.vibrate(50);
+              }
+            });
+            
+            // Focus events for keyboard navigation
+            link.addEventListener('focus', (e) => {
+              updateMobileTrail(link);
+            });
+            
+            link.addEventListener('mouseleave', () => {
+              resetMobileLink(link);
+            });
+            
+            link.addEventListener('touchend', () => {
+              setTimeout(() => resetMobileLink(link), 300);
+            });
+            
+            link.addEventListener('blur', () => {
+              resetMobileLink(link);
+            });
+          });
+          
+          function updateMobileTrail(link) {
+            const linkRect = link.getBoundingClientRect();
+            const containerRect = mobileNavContainer.getBoundingClientRect();
+            
+            const leftOffset = linkRect.left - containerRect.left;
+            const linkWidth = linkRect.width;
+            
+            mobileNavTrail.style.left = leftOffset + 'px';
+            mobileNavTrail.style.width = linkWidth + 'px';
+            mobileNavTrail.classList.add('active');
+            
+            mobileActiveLink = link;
+          }
+          
+          function resetMobileLink(link) {
+            // Don't reset if this is still the active link
+            if (link === mobileActiveLink) return;
+            
+            link.style.transform = 'scale(1)';
+          }
+          
+          // Hide mobile trail when container loses focus/touch
+          mobileNavContainer.addEventListener('mouseleave', () => {
+            hideMobileTrail();
+          });
+          
+          mobileNavContainer.addEventListener('touchcancel', () => {
+            hideMobileTrail();
+          });
+          
+          function hideMobileTrail() {
+            mobileNavTrail.classList.remove('active');
+            mobileNavTrail.style.width = '0px';
+            mobileActiveLink = null;
+            
+            mobileNavLinks.forEach(link => {
+              link.style.transform = 'scale(1)';
+            });
+          }
+        }
+
+        // Enhanced Register Button Effect
+        const registerBtn = document.querySelector('.register-btn');
+        if (registerBtn) {
+          // Add ripple effect on click
+          registerBtn.addEventListener('click', function(e) {
+            const ripple = document.createElement('span');
+            const rect = this.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            const x = e.clientX - rect.left - size / 2;
+            const y = e.clientY - rect.top - size / 2;
+            
+            ripple.style.cssText = `
+              position: absolute;
+              width: ${size}px;
+              height: ${size}px;
+              left: ${x}px;
+              top: ${y}px;
+              background: radial-gradient(circle, rgba(255,255,255,0.6) 0%, transparent 70%);
+              border-radius: 50%;
+              transform: scale(0);
+              animation: ripple 0.6s ease-out;
+              pointer-events: none;
+              z-index: 1;
+            `;
+            
+            this.appendChild(ripple);
+            
+            // Remove ripple after animation
+            setTimeout(() => {
+              if (ripple.parentNode) {
+                ripple.parentNode.removeChild(ripple);
+              }
+            }, 600);
+            
+            // Add haptic feedback
+            if (navigator.vibrate) {
+              navigator.vibrate(100);
+            }
+          });
+        }
+
+        // Add ripple animation to CSS if not already present
+        if (!document.querySelector('#ripple-animation')) {
+          const style = document.createElement('style');
+          style.id = 'ripple-animation';
+          style.textContent = `
+            @keyframes ripple {
+              0% { transform: scale(0); opacity: 1; }
+              100% { transform: scale(1); opacity: 0; }
+            }
+          `;
+          document.head.appendChild(style);
+        }
 
         // Countdown Timer
         const eventDate = new Date();
