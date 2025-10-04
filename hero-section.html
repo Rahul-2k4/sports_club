@@ -26,7 +26,7 @@
       .ring-contrast { box-shadow: 0 0 0 1px rgba(255,255,255,0.08) inset; }
       .kbd { border: 1px solid rgba(255,255,255,.16); padding: 2px 6px; border-radius: 6px; font-size: 12px; background: rgba(255,255,255,.06); }
       .focus-ring:focus-visible { outline: 2px solid rgba(148,163,184,.5); outline-offset: 3px; }
-            .title-gradient { background: linear-gradient(to right, rgb(96 165 250), rgb(167 139 250)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+      .title-gradient { background: linear-gradient(to right, rgb(96 165 250), rgb(167 139 250)); -webkit-background-clip: text; background-clip: text; color: transparent; }
 
       /* Parallax layers */
       .parallax-fixed { position: fixed; inset: 0; pointer-events: none; z-index: -1; }
@@ -51,6 +51,18 @@
       @keyframes marquee {
         0% { transform: translateX(0); }
         100% { transform: translateX(-50%); }
+      }
+
+      .sports-swiper-pagination .swiper-pagination-bullet {
+        background-color: rgba(255, 255, 255, 0.5);
+        width: 10px;
+        height: 10px;
+        transition: all 0.3s ease;
+      }
+      .sports-swiper-pagination .swiper-pagination-bullet-active {
+        background-color: white;
+        width: 24px;
+        border-radius: 5px;
       }
 
       /* Team Swiper */
@@ -1548,6 +1560,155 @@
       .content-container {
         padding-top: 0;
       }
+        @property --gradient-angle {
+      syntax: "<angle>";
+      initial-value: 0deg;
+      inherits: false;
+    }
+
+    @property --gradient-angle-offset {
+      syntax: "<angle>";
+      initial-value: 0deg;
+      inherits: false;
+    }
+
+    @property --gradient-percent {
+      syntax: "<percentage>";
+      initial-value: 20%;
+      inherits: false;
+    }
+
+    @property --gradient-shine {
+      syntax: "<color>";
+      initial-value: rgb(167 139 250);
+      inherits: false;
+    }
+
+    .shiny-cta {
+      --gradient-angle: 0deg;
+      --gradient-angle-offset: 0deg;
+      --gradient-percent: 20%;
+      --gradient-shine: rgb(167 139 250);
+      --shadow-size: 2px;
+      position: relative;
+      overflow: hidden;
+      border-radius: 9999px;
+      padding: 1.25rem 2.5rem;
+      font-size: 1.125rem;
+      line-height: 1.2;
+      font-weight: 500;
+      color: #ffffff;
+      background: linear-gradient(#000000, #000000) padding-box, conic-gradient(from calc(var(--gradient-angle) - var(--gradient-angle-offset)), transparent 0%, rgb(96 165 250) 5%, var(--gradient-shine) 15%, rgb(96 165 250) 30%, transparent 40%, transparent 100%) border-box;
+      border: 2px solid transparent;
+      box-shadow: inset 0 0 0 1px #1a1818;
+      outline: none;
+      transition: --gradient-angle-offset 800ms cubic-bezier(0.25, 1, 0.5, 1), --gradient-percent 800ms cubic-bezier(0.25, 1, 0.5, 1), --gradient-shine 800ms cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.3s, transform 0.3s ease;
+      cursor: pointer;
+      isolation: isolate;
+      outline-offset: 4px;
+      font-family: 'Inter', 'Helvetica Neue', sans-serif;
+      z-index: 0;
+      animation: border-spin 2.5s linear infinite;
+    }
+
+    @keyframes border-spin {
+      to {
+        --gradient-angle: 360deg;
+      }
+    }
+
+    .shiny-cta:active {
+      transform: translateY(1px);
+    }
+
+    .shiny-cta:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: inset 0 0 0 1px #1a1818, 0 10px 25px -5px rgba(167, 139, 250, 0.5);
+    }
+
+    .shiny-cta::before {
+      content: '';
+      pointer-events: none;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 0;
+      --size: calc(100% - 6px);
+      --position: 2px;
+      --space: 4px;
+      width: var(--size);
+      height: var(--size);
+      background: radial-gradient(circle at var(--position) var(--position), white 0.5px, transparent 0) padding-box;
+      background-size: var(--space) var(--space);
+      background-repeat: space;
+      mask-image: conic-gradient(from calc(var(--gradient-angle) + 45deg), black, transparent 10% 90%, black);
+      border-radius: inherit;
+      opacity: 0.4;
+      pointer-events: none;
+    }
+
+    .shiny-cta::after {
+      content: '';
+      pointer-events: none;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 1;
+      width: 100%;
+      aspect-ratio: 1;
+      background: linear-gradient(-50deg, transparent, rgb(96 165 250), transparent);
+      mask-image: radial-gradient(circle at bottom, transparent 40%, black);
+      opacity: 0.6;
+      animation: shimmer 4s linear infinite;
+      animation-play-state: running;
+    }
+
+    .shiny-cta span {
+      position: relative;
+      z-index: 2;
+      display: inline-block;
+    }
+
+    .shiny-cta span::before {
+      content: '';
+      pointer-events: none;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      z-index: -1;
+      --size: calc(100% + 1rem);
+      width: var(--size);
+      height: var(--size);
+      box-shadow: inset 0 -1ex 2rem 4px rgb(96 165 250);
+      opacity: 0;
+      border-radius: inherit;
+      transition: opacity 800ms cubic-bezier(0.25, 1, 0.5, 1);
+      animation: breathe 4.5s linear infinite;
+    }
+
+    @keyframes shimmer {
+      to {
+        transform: translate(-50%, -50%) rotate(360deg);
+      }
+    }
+
+    @keyframes breathe {
+
+      0%,
+      100% {
+        transform: translate(-50%, -50%) scale(1);
+      }
+
+      50% {
+        transform: translate(-50%, -50%) scale(1.20);
+      }
+    }
+
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
   </head>
   <body id="top" class="bg-black text-white antialiased selection:bg-white/20 scroll-smooth">
@@ -1620,8 +1781,8 @@
               </div>
             </div>
             <div class="flex items-center gap-2">
-              <button class="register-btn bg-white text-black font-medium rounded-md px-6 py-2 hover:bg-opacity-90 transition-all focus-ring">
-                Register Now
+              <button class="shiny-cta focus:outline-none">
+                <span>Register Now</span>
               </button>
             </div>
           </div>
@@ -1646,7 +1807,7 @@
       </nav>
 
       <!-- Hero -->
-      <header class="container mx-auto px-6 pt-24 md:pt-32 lg:pt-36">
+      <header class="container mx-auto px-6 pt-32 md:pt-40 lg:pt-44">
         <div class="flex flex-col items-center text-center max-w-3xl mx-auto">
           <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold tracking-wider uppercase mb-6 leading-tight" data-animate="" style="--d: .1s;">
             <span class="title-gradient">PACE</span> <span class="text-white/80 font-light tracking-normal">2026</span>
@@ -1755,69 +1916,210 @@
         </div>
       </section>
 
+      <!-- Available Sports Horizontal Scroll -->
+      <section id="available-sports" class="container mx-auto px-6 mt-16 scroll-mt-24">
+        <div class="max-w-6xl mx-auto" data-animate="" style="--d:.05s;">
+          <h2 class="text-3xl tracking-tight font-light mb-4 title-gradient">Available Sports</h2>
+          <p class="text-white/80 max-w-3xl mb-8">
+            Drag or swipe to explore all the competitions available.
+          </p>
+          <div id="sports-scroll-container" class="flex gap-6 overflow-x-auto pb-4 cursor-grab active:cursor-grabbing no-scrollbar">
+            <!-- Card 1: Football -->
+            <div class="sport-card flex-shrink-0 w-72" data-animate="" style="--d:.1s;">
+              <div class="glass rounded-2xl border border-white/10 ring-contrast h-full transition-all duration-300 hover:scale-105 hover:border-white/20 hover:shadow-xl hover:shadow-blue-500/10 overflow-hidden">
+                <img src="https://images.pexels.com/photos/47730/the-ball-stadion-football-the-pitch-47730.jpeg" alt="Football" class="h-40 w-full object-cover">
+                <div class="p-6">
+                  <h3 class="text-xl font-medium mb-2 text-white">Football</h3>
+                  <p class="text-white/70 text-sm">Join our 11v11 tournament for glory.</p>
+                </div>
+              </div>
+            </div>
+            <!-- Card 2: Basketball -->
+            <div class="sport-card flex-shrink-0 w-72" data-animate="" style="--d:.15s;">
+              <div class="glass rounded-2xl border border-white/10 ring-contrast h-full transition-all duration-300 hover:scale-105 hover:border-white/20 hover:shadow-xl hover:shadow-purple-500/10 overflow-hidden">
+                <img src="https://images.pexels.com/photos/1080884/pexels-photo-1080884.jpeg" alt="Basketball" class="h-40 w-full object-cover">
+                <div class="p-6">
+                  <h3 class="text-xl font-medium mb-2 text-white">Basketball</h3>
+                  <p class="text-white/70 text-sm">Showcase your skills in 5v5 matches.</p>
+                </div>
+              </div>
+            </div>
+            <!-- Card 3: Tennis -->
+            <div class="sport-card flex-shrink-0 w-72" data-animate="" style="--d:.2s;">
+              <div class="glass rounded-2xl border border-white/10 ring-contrast h-full transition-all duration-300 hover:scale-105 hover:border-white/20 hover:shadow-xl hover:shadow-green-500/10 overflow-hidden">
+                <img src="https://images.pexels.com/photos/1432034/pexels-photo-1432034.jpeg" alt="Tennis" class="h-40 w-full object-cover">
+                <div class="p-6">
+                  <h3 class="text-xl font-medium mb-2 text-white">Tennis</h3>
+                  <p class="text-white/70 text-sm">Compete in singles and doubles events.</p>
+                </div>
+              </div>
+            </div>
+            <!-- Card 4: Swimming -->
+            <div class="sport-card flex-shrink-0 w-72" data-animate="" style="--d:.25s;">
+              <div class="glass rounded-2xl border border-white/10 ring-contrast h-full transition-all duration-300 hover:scale-105 hover:border-white/20 hover:shadow-xl hover:shadow-cyan-500/10 overflow-hidden">
+                <img src="https://images.pexels.com/photos/863988/pexels-photo-863988.jpeg" alt="Swimming" class="h-40 w-full object-cover">
+                <div class="p-6">
+                  <h3 class="text-xl font-medium mb-2 text-white">Swimming</h3>
+                  <p class="text-white/70 text-sm">Freestyle, breaststroke, and relay races.</p>
+                </div>
+              </div>
+            </div>
+            <!-- Card 5: Athletics -->
+            <div class="sport-card flex-shrink-0 w-72" data-animate="" style="--d:.3s;">
+              <div class="glass rounded-2xl border border-white/10 ring-contrast h-full transition-all duration-300 hover:scale-105 hover:border-white/20 hover:shadow-xl hover:shadow-yellow-500/10 overflow-hidden">
+                <img src="https://images.pexels.com/photos/270085/pexels-photo-270085.jpeg" alt="Athletics" class="h-40 w-full object-cover">
+                <div class="p-6">
+                  <h3 class="text-xl font-medium mb-2 text-white">Athletics</h3>
+                  <p class="text-white/70 text-sm">Track and field events for all ages.</p>
+                </div>
+              </div>
+            </div>
+            <!-- Card 6: Volleyball -->
+            <div class="sport-card flex-shrink-0 w-72" data-animate="" style="--d:.35s;">
+              <div class="glass rounded-2xl border border-white/10 ring-contrast h-full transition-all duration-300 hover:scale-105 hover:border-white/20 hover:shadow-xl hover:shadow-orange-500/10 overflow-hidden">
+                <img src="https://images.pexels.com/photos/1263426/pexels-photo-1263426.jpeg" alt="Volleyball" class="h-40 w-full object-cover">
+                <div class="p-6">
+                  <h3 class="text-xl font-medium mb-2 text-white">Volleyball</h3>
+                  <p class="text-white/70 text-sm">Beach volleyball team competitions.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <!-- Sports with 3D Coverflow Carousel -->
       <section id="sports" class="container mx-auto px-6 mt-16 scroll-mt-24">
         <div class="max-w-6xl mx-auto glass rounded-2xl border border-white/10 ring-contrast p-8" data-animate="" style="--d:.08s;">
           <h2 class="text-3xl tracking-tight font-light mb-2 title-gradient text-center">Sports</h2>
           <p class="text-center text-white/70 max-w-2xl mx-auto">Swipe or drag to explore featured sports.</p>
 
-          <div class="swiper sportsSwiper w-full" style="padding-top: 40px; padding-bottom: 24px;">
-            <div class="swiper-wrapper">
-              <!-- Football -->
-              <div class="swiper-slide w-[260px] h-[320px] sm:w-[300px] sm:h-[340px] md:w-[360px] md:h-[360px]">
-                <div class="relative w-full h-full rounded-2xl overflow-hidden border border-white/10 glass ring-1 ring-white/10">
-                  <img src="https://source.unsplash.com/800x600/?football" alt="Football" class="absolute inset-0 w-full h-full object-cover progressive-image" loading="lazy">
-                  <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
-                  <div class="absolute bottom-0 w-full p-4">
-                    <h3 class="text-lg font-medium tracking-tight">Football</h3>
-                    <p class="text-xs text-white/70 mt-0.5">High-energy matches with top teams.</p>
+          <div class="relative mt-4">
+            <div class="swiper sportsSwiper w-full" style="padding-top: 40px; padding-bottom: 60px;">
+              <div class="swiper-wrapper">
+                <!-- Football -->
+                <div class="swiper-slide w-[260px] h-[320px] sm:w-[300px] sm:h-[340px] md:w-[360px] md:h-[360px]">
+                  <div class="relative w-full h-full rounded-2xl overflow-hidden border border-white/10 glass ring-1 ring-white/10 transition-all duration-300 hover:shadow-2xl hover:shadow-purple-500/20 hover:border-white/30">
+                    <img src="https://images.pexels.com/photos/47730/the-ball-stadion-football-the-pitch-47730.jpeg" alt="Football" class="absolute inset-0 w-full h-full object-cover progressive-image" loading="lazy">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+                    <div class="absolute bottom-0 w-full p-4">
+                      <h3 class="text-lg font-medium tracking-tight">Football</h3>
+                      <p class="text-xs text-white/70 mt-0.5">High-energy matches with top teams.</p>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <!-- Basketball -->
-              <div class="swiper-slide w-[260px] h-[320px] sm:w-[300px] sm:h-[340px] md:w-[360px] md:h-[360px]">
-                <div class="relative w-full h-full rounded-2xl overflow-hidden border border-white/10 glass ring-1 ring-white/10">
-                  <img src="https://source.unsplash.com/800x600/?basketball" alt="Basketball" class="absolute inset-0 w-full h-full object-cover progressive-image" loading="lazy">
-                  <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
-                  <div class="absolute bottom-0 w-full p-4">
-                    <h3 class="text-lg font-medium tracking-tight">Basketball</h3>
-                    <p class="text-xs text-white/70 mt-0.5">Fast-paced and action-packed games.</p>
+                <!-- Basketball -->
+                <div class="swiper-slide w-[260px] h-[320px] sm:w-[300px] sm:h-[340px] md:w-[360px] md:h-[360px]">
+                  <div class="relative w-full h-full rounded-2xl overflow-hidden border border-white/10 glass ring-1 ring-white/10 transition-all duration-300 hover:shadow-2xl hover:shadow-purple-500/20 hover:border-white/30">
+                    <img src="https://images.pexels.com/photos/1080884/pexels-photo-1080884.jpeg" alt="Basketball" class="absolute inset-0 w-full h-full object-cover progressive-image" loading="lazy">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+                    <div class="absolute bottom-0 w-full p-4">
+                      <h3 class="text-lg font-medium tracking-tight">Basketball</h3>
+                      <p class="text-xs text-white/70 mt-0.5">Fast-paced and action-packed games.</p>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <!-- Athletics -->
-              <div class="swiper-slide w-[260px] h-[320px] sm:w-[300px] sm:h-[340px] md:w-[360px] md:h-[360px]">
-                <div class="relative w-full h-full rounded-2xl overflow-hidden border border-white/10 glass ring-1 ring-white/10">
-                  <img src="https://source.unsplash.com/800x600/?running" alt="Athletics" class="absolute inset-0 w-full h-full object-cover progressive-image" loading="lazy">
-                  <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
-                  <div class="absolute bottom-0 w-full p-4">
-                    <h3 class="text-lg font-medium tracking-tight">Athletics</h3>
-                    <p class="text-xs text-white/70 mt-0.5">Track &amp; field competitions at their best.</p>
+                <!-- Athletics -->
+                <div class="swiper-slide w-[260px] h-[320px] sm:w-[300px] sm:h-[340px] md:w-[360px] md:h-[360px]">
+                  <div class="relative w-full h-full rounded-2xl overflow-hidden border border-white/10 glass ring-1 ring-white/10 transition-all duration-300 hover:shadow-2xl hover:shadow-purple-500/20 hover:border-white/30">
+                    <img src="https://images.pexels.com/photos/270085/pexels-photo-270085.jpeg" alt="Athletics" class="absolute inset-0 w-full h-full object-cover progressive-image" loading="lazy">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+                    <div class="absolute bottom-0 w-full p-4">
+                      <h3 class="text-lg font-medium tracking-tight">Athletics</h3>
+                      <p class="text-xs text-white/70 mt-0.5">Track &amp; field competitions at their best.</p>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <!-- Optional extra slides for depth -->
-              <div class="swiper-slide w-[260px] h-[320px] sm:w-[300px] sm:h-[340px] md:w-[360px] md:h-[360px]">
-                <div class="relative w-full h-full rounded-2xl overflow-hidden border border-white/10 glass ring-1 ring-white/10">
-                  <img src="https://source.unsplash.com/800x600/?tennis" alt="Tennis" class="absolute inset-0 w-full h-full object-cover progressive-image" loading="lazy">
-                  <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
-                  <div class="absolute bottom-0 w-full p-4">
-                    <h3 class="text-lg font-medium tracking-tight">Tennis</h3>
-                    <p class="text-xs text-white/70 mt-0.5">Singles and doubles tournaments.</p>
+                <!-- Tennis -->
+                <div class="swiper-slide w-[260px] h-[320px] sm:w-[300px] sm:h-[340px] md:w-[360px] md:h-[360px]">
+                  <div class="relative w-full h-full rounded-2xl overflow-hidden border border-white/10 glass ring-1 ring-white/10 transition-all duration-300 hover:shadow-2xl hover:shadow-purple-500/20 hover:border-white/30">
+                    <img src="https://images.pexels.com/photos/1432034/pexels-photo-1432034.jpeg" alt="Tennis" class="absolute inset-0 w-full h-full object-cover progressive-image" loading="lazy">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+                    <div class="absolute bottom-0 w-full p-4">
+                      <h3 class="text-lg font-medium tracking-tight">Tennis</h3>
+                      <p class="text-xs text-white/70 mt-0.5">Singles and doubles tournaments.</p>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="swiper-slide w-[260px] h-[320px] sm:w-[300px] sm:h-[340px] md:w-[360px] md:h-[360px]">
-                <div class="relative w-full h-full rounded-2xl overflow-hidden border border-white/10 glass ring-1 ring-white/10">
-                  <img src="https://source.unsplash.com/800x600/?swimming" alt="Swimming" class="absolute inset-0 w-full h-full object-cover progressive-image" loading="lazy">
-                  <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
-                  <div class="absolute bottom-0 w-full p-4">
-                    <h3 class="text-lg font-medium tracking-tight">Swimming</h3>
-                    <p class="text-xs text-white/70 mt-0.5">Relay and individual events.</p>
+                <!-- Swimming -->
+                <div class="swiper-slide w-[260px] h-[320px] sm:w-[300px] sm:h-[340px] md:w-[360px] md:h-[360px]">
+                  <div class="relative w-full h-full rounded-2xl overflow-hidden border border-white/10 glass ring-1 ring-white/10 transition-all duration-300 hover:shadow-2xl hover:shadow-purple-500/20 hover:border-white/30">
+                    <img src="https://images.pexels.com/photos/863988/pexels-photo-863988.jpeg" alt="Swimming" class="absolute inset-0 w-full h-full object-cover progressive-image" loading="lazy">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+                    <div class="absolute bottom-0 w-full p-4">
+                      <h3 class="text-lg font-medium tracking-tight">Swimming</h3>
+                      <p class="text-xs text-white/70 mt-0.5">Relay and individual events.</p>
+                    </div>
+                  </div>
+                </div>
+                <!-- Football (Duplicate) -->
+                <div class="swiper-slide w-[260px] h-[320px] sm:w-[300px] sm:h-[340px] md:w-[360px] md:h-[360px]">
+                  <div class="relative w-full h-full rounded-2xl overflow-hidden border border-white/10 glass ring-1 ring-white/10 transition-all duration-300 hover:shadow-2xl hover:shadow-purple-500/20 hover:border-white/30">
+                    <img src="https://images.pexels.com/photos/47730/the-ball-stadion-football-the-pitch-47730.jpeg" alt="Football" class="absolute inset-0 w-full h-full object-cover progressive-image" loading="lazy">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+                    <div class="absolute bottom-0 w-full p-4">
+                      <h3 class="text-lg font-medium tracking-tight">Football</h3>
+                      <p class="text-xs text-white/70 mt-0.5">High-energy matches with top teams.</p>
+                    </div>
+                  </div>
+                </div>
+                <!-- Basketball (Duplicate) -->
+                <div class="swiper-slide w-[260px] h-[320px] sm:w-[300px] sm:h-[340px] md:w-[360px] md:h-[360px]">
+                  <div class="relative w-full h-full rounded-2xl overflow-hidden border border-white/10 glass ring-1 ring-white/10 transition-all duration-300 hover:shadow-2xl hover:shadow-purple-500/20 hover:border-white/30">
+                    <img src="https://images.pexels.com/photos/1080884/pexels-photo-1080884.jpeg" alt="Basketball" class="absolute inset-0 w-full h-full object-cover progressive-image" loading="lazy">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+                    <div class="absolute bottom-0 w-full p-4">
+                      <h3 class="text-lg font-medium tracking-tight">Basketball</h3>
+                      <p class="text-xs text-white/70 mt-0.5">Fast-paced and action-packed games.</p>
+                    </div>
+                  </div>
+                </div>
+                <!-- Athletics (Duplicate) -->
+                <div class="swiper-slide w-[260px] h-[320px] sm:w-[300px] sm:h-[340px] md:w-[360px] md:h-[360px]">
+                  <div class="relative w-full h-full rounded-2xl overflow-hidden border border-white/10 glass ring-1 ring-white/10 transition-all duration-300 hover:shadow-2xl hover:shadow-purple-500/20 hover:border-white/30">
+                    <img src="https://images.pexels.com/photos/270085/pexels-photo-270085.jpeg" alt="Athletics" class="absolute inset-0 w-full h-full object-cover progressive-image" loading="lazy">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+                    <div class="absolute bottom-0 w-full p-4">
+                      <h3 class="text-lg font-medium tracking-tight">Athletics</h3>
+                      <p class="text-xs text-white/70 mt-0.5">Track &amp; field competitions at their best.</p>
+                    </div>
+                  </div>
+                </div>
+                <!-- Tennis (Duplicate) -->
+                <div class="swiper-slide w-[260px] h-[320px] sm:w-[300px] sm:h-[340px] md:w-[360px] md:h-[360px]">
+                  <div class="relative w-full h-full rounded-2xl overflow-hidden border border-white/10 glass ring-1 ring-white/10 transition-all duration-300 hover:shadow-2xl hover:shadow-purple-500/20 hover:border-white/30">
+                    <img src="https://images.pexels.com/photos/1432034/pexels-photo-1432034.jpeg" alt="Tennis" class="absolute inset-0 w-full h-full object-cover progressive-image" loading="lazy">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+                    <div class="absolute bottom-0 w-full p-4">
+                      <h3 class="text-lg font-medium tracking-tight">Tennis</h3>
+                      <p class="text-xs text-white/70 mt-0.5">Singles and doubles tournaments.</p>
+                    </div>
+                  </div>
+                </div>
+                <!-- Swimming (Duplicate) -->
+                <div class="swiper-slide w-[260px] h-[320px] sm:w-[300px] sm:h-[340px] md:w-[360px] md:h-[360px]">
+                  <div class="relative w-full h-full rounded-2xl overflow-hidden border border-white/10 glass ring-1 ring-white/10 transition-all duration-300 hover:shadow-2xl hover:shadow-purple-500/20 hover:border-white/30">
+                    <img src="https://images.pexels.com/photos/863988/pexels-photo-863988.jpeg" alt="Swimming" class="absolute inset-0 w-full h-full object-cover progressive-image" loading="lazy">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+                    <div class="absolute bottom-0 w-full p-4">
+                      <h3 class="text-lg font-medium tracking-tight">Swimming</h3>
+                      <p class="text-xs text-white/70 mt-0.5">Relay and individual events.</p>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
+
+            <!-- Swiper Navigation Buttons -->
+            <div class="sports-swiper-button-prev absolute top-1/2 -translate-y-1/2 left-0 z-10 cursor-pointer p-2 bg-white/10 rounded-full hover:bg-white/20 transition-colors">
+              <i data-lucide="chevron-left" class="w-6 h-6"></i>
+            </div>
+            <div class="sports-swiper-button-next absolute top-1/2 -translate-y-1/2 right-0 z-10 cursor-pointer p-2 bg-white/10 rounded-full hover:bg-white/20 transition-colors">
+              <i data-lucide="chevron-right" class="w-6 h-6"></i>
+            </div>
+
+            <!-- Swiper Pagination -->
+            <div class="sports-swiper-pagination !absolute !bottom-4 !left-1/2 !-translate-x-1/2"></div>
           </div>
 
         </div>
@@ -2393,24 +2695,28 @@
 
         // Sports Swiper (3D Coverflow)
         if (window.Swiper) {
-          const sportsSwiper = new Swiper(".sportsSwiper", {
-            effect: "coverflow",
-            grabCursor: true,
-            centeredSlides: true,
-            slidesPerView: "auto",
-            loop: true,
-            coverflowEffect: {
-              rotate: 30,
-              stretch: 0,
-              depth: 160,
-              modifier: 1,
-              slideShadows: true,
-            },
-            autoplay: {
-              delay: 2500,
-              disableOnInteraction: false,
-            },
-          });
+      const sportsSwiper = new Swiper(".sportsSwiper", {
+        effect: "coverflow",
+        grabCursor: true,
+        centeredSlides: true,
+        slidesPerView: "auto",
+        coverflowEffect: {
+          rotate: 15,
+          stretch: 0,
+          depth: 200,
+          modifier: 1,
+          slideShadows: false,
+        },
+        loop: true,
+        navigation: {
+          nextEl: ".sports-swiper-button-next",
+          prevEl: ".sports-swiper-button-prev",
+        },
+        pagination: {
+          el: ".sports-swiper-pagination",
+          clickable: true,
+        },
+      });
         }
         
         // Infinite Scroll Team Section
@@ -2663,6 +2969,66 @@
         // Initialize both rows
         initializeTeamMarquee('team-marquee-1', row1Members, 'right');
         initializeTeamMarquee('team-marquee-2', row2Members, 'left');
+
+      // Team Marquee Drag to Scroll
+      const marquee = document.querySelector('.team-marquee-container');
+      if (marquee) {
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+
+        marquee.addEventListener('mousedown', (e) => {
+          isDown = true;
+          marquee.classList.add('active');
+          startX = e.pageX - marquee.offsetLeft;
+          scrollLeft = marquee.scrollLeft;
+        });
+        marquee.addEventListener('mouseleave', () => {
+          isDown = false;
+          marquee.classList.remove('active');
+        });
+        marquee.addEventListener('mouseup', () => {
+          isDown = false;
+          marquee.classList.remove('active');
+        });
+        marquee.addEventListener('mousemove', (e) => {
+          if (!isDown) return;
+          e.preventDefault();
+          const x = e.pageX - marquee.offsetLeft;
+          const walk = (x - startX) * 2; //scroll-fast
+          marquee.scrollLeft = scrollLeft - walk;
+        });
+      }
+
+      // Drag to scroll for sports section
+      const slider = document.querySelector('#sports-scroll-container');
+      if (slider) {
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+
+        slider.addEventListener('mousedown', (e) => {
+          isDown = true;
+          slider.classList.add('active');
+          startX = e.pageX - slider.offsetLeft;
+          scrollLeft = slider.scrollLeft;
+        });
+        slider.addEventListener('mouseleave', () => {
+          isDown = false;
+          slider.classList.remove('active');
+        });
+        slider.addEventListener('mouseup', () => {
+          isDown = false;
+          slider.classList.remove('active');
+        });
+        slider.addEventListener('mousemove', (e) => {
+          if (!isDown) return;
+          e.preventDefault();
+          const x = e.pageX - slider.offsetLeft;
+          const walk = (x - startX) * 2; //scroll-fast
+          slider.scrollLeft = scrollLeft - walk;
+        });
+      }
 
         // Gallery drag-to-scroll functionality
         document.querySelectorAll('.gallery-row').forEach(row => {
