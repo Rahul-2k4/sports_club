@@ -26,7 +26,7 @@
       .ring-contrast { box-shadow: 0 0 0 1px rgba(255,255,255,0.08) inset; }
       .kbd { border: 1px solid rgba(255,255,255,.16); padding: 2px 6px; border-radius: 6px; font-size: 12px; background: rgba(255,255,255,.06); }
       .focus-ring:focus-visible { outline: 2px solid rgba(148,163,184,.5); outline-offset: 3px; }
-      .title-gradient { background: linear-gradient(to right, rgb(96 165 250), rgb(167 139 250)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+            .title-gradient { background: linear-gradient(to right, rgb(96 165 250), rgb(167 139 250)); -webkit-background-clip: text; background-clip: text; color: transparent; }
 
       /* Parallax layers */
       .parallax-fixed { position: fixed; inset: 0; pointer-events: none; z-index: -1; }
@@ -506,7 +506,6 @@
         filter: none !important;
       }
       
-      .low-fps .marquee-animate,
       .low-fps .team-marquee-track {
         animation: none !important;
       }
@@ -681,124 +680,276 @@
       }
 
       /* Loading Screen */
-      .loading-screen {
+      /* PACE Loader Styles */
+      @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&display=swap');
+      
+      #pre-load {
+        background: linear-gradient(135deg, #000000 0%, #0a0a0a 50%, #000000 100%);
         position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(135deg, #000000 0%, #1a1a2e 50%, #16213e 100%);
+        inset: 0;
         display: flex;
-        flex-direction: column;
         align-items: center;
         justify-content: center;
-        z-index: 9999;
-        transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
+        z-index: 999999;
       }
 
-      .loading-screen.fade-out {
-        opacity: 0;
-        visibility: hidden;
-      }
-
-      /* Sports Ball Loader */
-      .sports-loader {
+      #pre-load .loader-inner {
+        --loader-background: linear-gradient(135deg, rgba(80, 80, 120, 0.15) 0%, rgba(120, 120, 160, 0.15) 100%);
         position: relative;
+        height: 400px;
+        width: 400px;
         display: flex;
-        flex-direction: column;
         align-items: center;
-        gap: 2rem;
+        justify-content: center;
       }
 
-      .bouncing-balls {
-        display: flex;
-        gap: 10px;
+      #pre-load .loader-inner .loader-text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 999;
+        font-size: 48px;
+        font-weight: 900;
+        letter-spacing: 12px;
+        color: #ffffff;
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.8),
+                     0 0 20px rgba(200, 200, 255, 0.6),
+                     0 0 30px rgba(150, 150, 255, 0.4),
+                     0 0 40px rgba(100, 100, 255, 0.2);
+        animation: text-pulse 2s ease-in-out infinite;
+        font-family: 'Orbitron', sans-serif;
+        white-space: nowrap;
       }
 
-      .ball {
-        width: 20px;
-        height: 20px;
-        border-radius: 50%;
-        animation: bounce-loader 1.5s infinite ease-in-out;
+      #pre-load .loader-inner .loader-text .letter {
+        display: inline-block;
+        animation: letter-wave 1.5s ease-in-out infinite;
       }
 
-      .ball:nth-child(1) {
-        background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+      #pre-load .loader-inner .loader-text .letter:nth-child(1) {
         animation-delay: 0s;
       }
 
-      .ball:nth-child(2) {
-        background: linear-gradient(45deg, #4ecdc4, #6ee7dc);
+      #pre-load .loader-inner .loader-text .letter:nth-child(2) {
+        animation-delay: 0.1s;
+      }
+
+      #pre-load .loader-inner .loader-text .letter:nth-child(3) {
+        animation-delay: 0.2s;
+      }
+
+      #pre-load .loader-inner .loader-text .letter:nth-child(4) {
         animation-delay: 0.3s;
       }
 
-      .ball:nth-child(3) {
-        background: linear-gradient(45deg, #45b7d1, #6bc5e8);
+      #pre-load .loader-inner .box {
+        position: absolute;
+        background: var(--loader-background);
+        border-radius: 50%;
+        border: 2px solid transparent;
+        border-top-color: rgba(150, 150, 255, 0.6);
+        border-right-color: rgba(120, 120, 200, 0.4);
+        box-shadow: rgba(100, 100, 255, 0.3) 0 10px 30px 0,
+                    inset rgba(255, 255, 255, 0.1) 0 1px 2px 0;
+        backdrop-filter: blur(10px);
+        animation: ripple 2.5s infinite ease-in-out;
+      }
+
+      #pre-load .loader-inner .box:nth-child(2) {
+        width: 40%;
+        aspect-ratio: 1/1;
+        z-index: 99;
+      }
+
+      #pre-load .loader-inner .box:nth-child(3) {
+        inset: 22%;
+        z-index: 98;
+        border-top-color: rgba(130, 130, 220, 0.5);
+        border-right-color: rgba(110, 110, 180, 0.3);
+        animation-delay: 0.15s;
+      }
+
+      #pre-load .loader-inner .box:nth-child(4) {
+        inset: 10%;
+        z-index: 97;
+        border-top-color: rgba(110, 110, 180, 0.4);
+        border-right-color: rgba(100, 100, 160, 0.2);
+        animation-delay: 0.3s;
+      }
+
+      #pre-load .loader-inner .box:nth-child(5) {
+        inset: -2%;
+        z-index: 96;
+        border-top-color: rgba(90, 90, 140, 0.3);
+        border-right-color: rgba(80, 80, 120, 0.15);
+        animation-delay: 0.45s;
+      }
+
+      #pre-load .loader-inner .box:nth-child(6) {
+        inset: -14%;
+        z-index: 95;
+        border-top-color: rgba(70, 70, 100, 0.2);
+        border-right-color: rgba(60, 60, 80, 0.1);
         animation-delay: 0.6s;
       }
 
-      .ball:nth-child(4) {
-        background: linear-gradient(45deg, #f9ca24, #f0932b);
-        animation-delay: 0.9s;
+      /* Particle effects */
+      #pre-load .particles {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        z-index: 94;
       }
 
-      @keyframes bounce-loader {
-        0%, 20%, 50%, 80%, 100% {
-          transform: translateY(0) scale(1);
+      #pre-load .particle {
+        position: absolute;
+        width: 3px;
+        height: 3px;
+        background: radial-gradient(circle, rgba(150, 150, 255, 0.8), transparent);
+        border-radius: 50%;
+        animation: float 4s infinite ease-in-out;
+      }
+
+      #pre-load .particle:nth-child(1) {
+        left: 10%;
+        top: 20%;
+        animation-delay: 0s;
+      }
+
+      #pre-load .particle:nth-child(2) {
+        left: 80%;
+        top: 30%;
+        animation-delay: 0.5s;
+      }
+
+      #pre-load .particle:nth-child(3) {
+        left: 20%;
+        top: 70%;
+        animation-delay: 1s;
+      }
+
+      #pre-load .particle:nth-child(4) {
+        left: 70%;
+        top: 80%;
+        animation-delay: 1.5s;
+      }
+
+      #pre-load .particle:nth-child(5) {
+        left: 50%;
+        top: 10%;
+        animation-delay: 2s;
+      }
+
+      @keyframes ripple {
+        0% {
+          transform: scale(1) rotate(0deg);
+          box-shadow: rgba(100, 100, 255, 0.3) 0 10px 30px 0,
+                      inset rgba(255, 255, 255, 0.1) 0 1px 2px 0;
         }
-        40% {
-          transform: translateY(-30px) scale(1.1);
+        50% {
+          transform: scale(1.35) rotate(180deg);
+          box-shadow: rgba(100, 100, 255, 0.5) 0 30px 50px 0,
+                      inset rgba(255, 255, 255, 0.15) 0 2px 4px 0;
         }
-        60% {
-          transform: translateY(-15px) scale(1.05);
+        100% {
+          transform: scale(1) rotate(360deg);
+          box-shadow: rgba(100, 100, 255, 0.3) 0 10px 30px 0,
+                      inset rgba(255, 255, 255, 0.1) 0 1px 2px 0;
         }
       }
 
-      /* Loading Text */
-      .loading-text {
-        color: white;
-        font-size: 1.5rem;
-        font-weight: 300;
-        margin-bottom: 1rem;
-        background: linear-gradient(to right, rgb(96 165 250), rgb(167 139 250));
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
-        animation: pulse-text 2s ease-in-out infinite;
+      @keyframes text-pulse {
+        0%, 100% {
+          opacity: 0.8;
+          text-shadow: 0 0 10px rgba(255, 255, 255, 0.8),
+                       0 0 20px rgba(200, 200, 255, 0.6),
+                       0 0 30px rgba(150, 150, 255, 0.4),
+                       0 0 40px rgba(100, 100, 255, 0.2);
+        }
+        50% {
+          opacity: 1;
+          text-shadow: 0 0 15px rgba(255, 255, 255, 1),
+                       0 0 30px rgba(200, 200, 255, 0.8),
+                       0 0 45px rgba(150, 150, 255, 0.6),
+                       0 0 60px rgba(100, 100, 255, 0.4);
+        }
       }
 
-      .loading-subtitle {
-        color: rgba(255, 255, 255, 0.7);
-        font-size: 1rem;
-        font-weight: 300;
+      @keyframes letter-wave {
+        0%, 100% {
+          transform: translateY(0px) scale(1);
+        }
+        50% {
+          transform: translateY(-10px) scale(1.1);
+        }
       }
 
-      @keyframes pulse-text {
-        0%, 100% { opacity: 1; }
-        50% { opacity: 0.7; }
+      @keyframes float {
+        0%, 100% {
+          transform: translate(0, 0) scale(1);
+          opacity: 0.3;
+        }
+        25% {
+          transform: translate(10px, -20px) scale(1.2);
+          opacity: 0.6;
+        }
+        50% {
+          transform: translate(-10px, -40px) scale(1);
+          opacity: 0.8;
+        }
+        75% {
+          transform: translate(5px, -20px) scale(0.8);
+          opacity: 0.4;
+        }
       }
 
-      /* Progress Bar */
-      .loading-progress {
+      @keyframes fade-out {
+        from {
+          opacity: 1;
+        }
+        to {
+          opacity: 0;
+        }
+      }
+
+      #pre-load.fade-out {
+        animation: fade-out 0.6s ease-out forwards;
+      }
+
+      /* Loading bar */
+      .loading-bar {
+        position: absolute;
+        bottom: 60px;
+        left: 50%;
+        transform: translateX(-50%);
         width: 200px;
-        height: 4px;
+        height: 3px;
         background: rgba(255, 255, 255, 0.1);
         border-radius: 10px;
         overflow: hidden;
-        margin-top: 2rem;
+        z-index: 1000;
       }
 
-      .progress-fill {
+      .loading-bar::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
         height: 100%;
-        background: linear-gradient(90deg, #3b82f6, #8b5cf6);
-        border-radius: 10px;
-        animation: loading-progress 3s ease-in-out infinite;
+        background: linear-gradient(90deg, transparent, rgba(150, 150, 255, 0.8), transparent);
+        animation: loading 2s infinite ease-in-out;
       }
 
-      @keyframes loading-progress {
-        0% { width: 0%; }
-        50% { width: 70%; }
-        100% { width: 100%; }
+      @keyframes loading {
+        0% {
+          left: -100%;
+        }
+        100% {
+          left: 100%;
+        }
       }
 
       /* Progressive Loading Styles */
@@ -1400,23 +1551,26 @@
     </style>
   </head>
   <body id="top" class="bg-black text-white antialiased selection:bg-white/20 scroll-smooth">
-    <!-- Loading Screen -->
-    <div class="loading-screen" id="loadingScreen">
-      <div class="sports-loader">
-        <div class="loading-text">Sports Club Championship</div>
-        <div class="loading-subtitle">Preparing your experience...</div>
-        
-        <div class="bouncing-balls">
-          <div class="ball"></div>
-          <div class="ball"></div>
-          <div class="ball"></div>
-          <div class="ball"></div>
-        </div>
-        
-        <div class="loading-progress">
-          <div class="progress-fill"></div>
-        </div>
+    <!-- PACE Loading Screen -->
+    <div id="pre-load">
+      <div class="particles">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
       </div>
+      <div class="loader-inner">
+        <div class="loader-text">
+          <span class="letter">P</span><span class="letter">A</span><span class="letter">C</span><span class="letter">E</span>
+        </div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+      </div>
+      <div class="loading-bar"></div>
     </div>
 
     <!-- Parallax Background Layers -->
@@ -1441,9 +1595,16 @@
           <div class="flex items-center justify-between glass rounded-xl border border-white/10 px-4 py-3 ring-contrast">
             <a href="#" id="logoLink" class="flex items-center cursor-pointer hover:opacity-80 transition-opacity">
               <div class="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center ring-1 ring-white/10">
-                <span class="text-sm sf-pro-display tracking-tight">AX</span>
+                <svg class="w-6 h-6 text-white/80" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M16.2932 11.9774C16.1759 9.03514 18.1298 4.66446 18.1298 4.66446C15.4936 4.64047 12.9105 5.40303 10.718 6.82939L10.7286 6.83318C9.57413 9.97876 9.03203 12.5087 9.30055 16.1502C9.57132 19.8221 12.8069 24.2667 12.8069 24.2667L12.8151 24.289C13.2392 24.0337 13.6347 23.7625 13.9746 23.4789C16.0131 21.7779 18.0004 18.0004 18.0004 18.0004C18.0004 18.0004 16.3906 14.4202 16.2932 11.9774Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                  <path d="M16.4666 9.98601C16.4666 9.98601 21.596 9.33699 26 11.3334C28.1175 12.2933 29.7798 13.6204 30.9149 14.7107L30.92 14.7029C31.6572 17.5844 31.4396 20.7292 30.0845 23.6352C30.0845 23.6352 27.7107 19.586 25.1694 18.401C22.6281 17.2159 18.0004 18.0004 18.0004 18.0004C18.0004 18.0004 16.3905 14.4202 16.2932 11.9773C16.2684 11.3573 16.3357 10.6738 16.4573 9.98113L16.4666 9.98601Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                  <path d="M13.9746 23.4789C11.8918 25.2168 7.71515 26.4899 7.71515 26.4899C8.93912 27.9749 10.5052 29.217 12.3655 30.0844C12.8609 30.3154 13.3632 30.5134 13.8699 30.6791C14.0151 30.6328 14.1603 30.5864 14.3053 30.5399C15.133 30.2741 15.9575 30.0014 16.7635 29.6829C18.3761 29.046 19.9175 28.2253 21.2715 26.9077C22.5979 25.6171 23.8898 23.6366 24.8487 21.9828C25.3286 21.1552 25.7258 20.4079 26.0032 19.8676C26.1418 19.5974 26.2505 19.3789 26.3246 19.2279L26.3599 19.1556C25.9732 18.8502 25.5735 18.5894 25.1695 18.401C22.6281 17.2159 18.0004 18.0003 18.0004 18.0003C18.0004 18.0003 16.0131 21.7778 13.9746 23.4789Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                  <path d="M18.1298 4.66446C18.1298 4.66446 16.1759 9.03514 16.2932 11.9774C16.3906 14.4202 18.0004 18.0004 18.0004 18.0004C18.0004 18.0004 16.0131 21.7779 13.9746 23.4789C11.8918 25.2168 7.7151 26.49 7.7151 26.49C4.54807 22.6477 3.67169 17.1791 5.91629 12.3655C8.19652 7.47555 13.0649 4.61836 18.1298 4.66446Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                  <path d="M18.0004 18.0004C18.0004 18.0004 16.3905 14.4202 16.2932 11.9773C16.1759 9.03508 18.1298 4.6644 18.1298 4.6644C19.9775 4.68122 21.8514 5.08435 23.6353 5.91619C30.3092 9.02827 33.1966 16.9613 30.0845 23.6352C30.0845 23.6352 27.7107 19.586 25.1694 18.401C22.6281 17.2159 18.0004 18.0004 18.0004 18.0004Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                  <path d="M7.71515 26.4899C7.71515 26.4899 11.8918 25.2168 13.9746 23.4789C16.0131 21.7778 18.0004 18.0003 18.0004 18.0003C18.0004 18.0003 22.6281 17.2159 25.1695 18.401C27.7108 19.586 30.0845 23.6352 30.0845 23.6352C26.9725 30.3091 19.0394 33.1965 12.3655 30.0844C10.5052 29.217 8.93912 27.9749 7.71515 26.4899Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>
               </div>
-              <span class="ml-3 text-xl tracking-tight sf-pro-display">Axiom Docs</span>
+              <span class="ml-3 text-xl tracking-tight font-bold text-white/90 transition-all duration-300 hover:text-white hover:scale-105 hover:tracking-wider active:scale-95 active:opacity-80">PACE</span>
             </a>
             <div class="hidden md:flex space-x-1 text-sm text-gray-300 nav-container">
               <div class="nav-trail" id="navTrail"></div>
@@ -1485,13 +1646,13 @@
       </nav>
 
       <!-- Hero -->
-      <header class="container mx-auto px-6 pt-10 md:pt-16">
+      <header class="container mx-auto px-6 pt-24 md:pt-32 lg:pt-36">
         <div class="flex flex-col items-center text-center max-w-3xl mx-auto">
-          <h1 class="text-5xl md:text-6xl lg:text-7xl font-light tracking-tight mb-6 leading-tight" data-animate="" style="--d: .1s;">
-            <span class="title-gradient">Developer Documentation</span> for the Axiom platform
+          <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold tracking-wider uppercase mb-6 leading-tight" data-animate="" style="--d: .1s;">
+            <span class="title-gradient">PACE</span> <span class="text-white/80 font-light tracking-normal">2026</span>
           </h1>
-          <p class="text-gray-300 text-xl md:text-2xl mb-8 max-w-2xl font-light tracking-tight" data-animate="" style="--d: .18s;">
-            Build, secure, and scale. Clear guides, robust APIs, and practical examples to help you ship with confidence.
+          <p class="text-gray-300 text-xl md:text-2xl mb-8 max-w-2xl font-light tracking-wide" data-animate="" style="--d: .18s;">
+            The future of sporting excellence. An event beyond imagination.
           </p>
           <div class="flex flex-col sm:flex-row gap-4 mt-2" data-animate="" style="--d: .26s;">
             <button class="bg-white text-black font-light rounded-md px-8 py-3 hover:bg-opacity-90 transition-all focus-ring">
@@ -2040,23 +2201,25 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
     <script>
+      // PACE Loader - Hide after 3 seconds
+      setTimeout(function() {
+        var loader = document.getElementById('pre-load');
+        loader.classList.add('fade-out');
+        // Remove from DOM after animation completes
+        setTimeout(function() {
+          loader.style.display = 'none';
+        }, 600);
+      }, 3000);
+
       // Progressive Loading System
       window.addEventListener('load', () => {
-        const loadingScreen = document.getElementById('loadingScreen');
-        
         // Stage 1: Initialize progressive loading immediately
         initializeProgressiveLoading();
         
-        // Stage 2: Hide loading screen after core content is ready
+        // Stage 2: Start loading heavy content
         setTimeout(() => {
-          loadingScreen.classList.add('fade-out');
-          
-          // Start loading heavy content
-          setTimeout(() => {
-            loadingScreen.style.display = 'none';
-            loadHeavyContent();
-          }, 500);
-        }, 1500); // Reduced from 2000ms to 1500ms
+          loadHeavyContent();
+        }, 3600); // After loader finishes
       });
       
       // Initialize Progressive Loading
